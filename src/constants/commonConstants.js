@@ -1,4 +1,4 @@
-export const API_LINK = `http://127.0.0.1:4500/api`;
+export const API_LINK = `https://vnbackend-b4d0409e1de8.herokuapp.com/api`;
 export const APP_NAME = `NewVision Travel& Tours`;
 
 export const ALL_PACKAGE_REQUEST = "ALL_PACKAGE_REQUEST";
