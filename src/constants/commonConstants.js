@@ -1,4 +1,5 @@
-export const API_LINK = `https://vnbackend-b4d0409e1de8.herokuapp.com/api`;
+//export const API_LINK = `https://vnbackend-b4d0409e1de8.herokuapp.com/api`;
+export const API_LINK = `http://127.0.0.1:5000/api`;
 export const APP_NAME = `NewVision Travel& Tours`;
 
 export const ALL_PACKAGE_REQUEST = "ALL_PACKAGE_REQUEST";
@@ -12,6 +13,10 @@ export const ALL_CATEGORY_FAIL = "ALL_CATEGORY_FAIL";
 export const ALL_COUNTRY_REQUEST = "ALL_COUNTRY_REQUEST";
 export const ALL_COUNTRY_SUCCESS = "ALL_COUNTRY_SUCCESS";
 export const ALL_COUNTRY_FAIL = "ALL_COUNTRY_FAIL";
+
+export const ALL_TOUR_REQUEST = "ALL_TOUR_REQUEST";
+export const ALL_TOUR_SUCCESS = "ALL_TOUR_SUCCESS";
+export const ALL_TOUR_FAIL = "ALL_TOUR_FAIL";
 
 export const ALL_VISA_CATEGORY_REQUEST = "ALL_VISA_CATEGORY_REQUEST";
 export const ALL_VISA_CATEGORY_SUCCESS = "ALL_VISA_CATEGORY_SUCCESS";

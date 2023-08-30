@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import $ from "jquery";
 
-const Banner = ({ bg, title, desc }) => {
+const Banner = ({ bg, title, desc, padding }) => {
   useEffect(() => {
     const headerHeight =
       $("#masthead").outerHeight() - $(".slicknav_menu").outerHeight();
@@ -9,7 +9,7 @@ const Banner = ({ bg, title, desc }) => {
     $(".inner-baner-container").css("padding-top", headerHeight);
   });
   return (
-    <div className="inner-banner-wrap">
+    <div className={`inner-banner-wrap ${padding ? padding : ""}`}>
       <div
         className="inner-baner-container"
         style={{

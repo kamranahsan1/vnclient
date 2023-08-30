@@ -6,13 +6,20 @@ const {
   ALL_CATEGORY_REQUEST,
   ALL_CATEGORY_SUCCESS,
   ALL_CATEGORY_FAIL,
-  CLEAR_ERRORS,
+
   ALL_COUNTRY_REQUEST,
   ALL_COUNTRY_FAIL,
   ALL_COUNTRY_SUCCESS,
+
   ALL_VISA_CATEGORY_REQUEST,
   ALL_VISA_CATEGORY_SUCCESS,
   ALL_VISA_CATEGORY_FAIL,
+
+  ALL_TOUR_REQUEST,
+  ALL_TOUR_SUCCESS,
+  ALL_TOUR_FAIL,
+
+  CLEAR_ERRORS,
 } = require("../constants/commonConstants");
 
 export const packageReducers = (state = { packages: [] }, action) => {
@@ -112,6 +119,38 @@ export const viewcategoryReducers = (state = { viewcategory: [] }, action) => {
         viewcategory: action.payload,
       };
     case ALL_VISA_CATEGORY_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const generatedTourReducers = (
+  state = { generatedTour: [] },
+  action
+) => {
+  switch (action.type) {
+    case ALL_TOUR_REQUEST:
+      return {
+        loading: true,
+        generatedTour: [],
+      };
+    case ALL_TOUR_SUCCESS:
+      return {
+        loading: false,
+        status: action.payload.status,
+        tours: action.payload.tours,
+        toursCount: action.payload.toursCount,
+      };
+    case ALL_TOUR_FAIL:
       return {
         loading: false,
         error: action.payload,

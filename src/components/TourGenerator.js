@@ -3,11 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getCountries } from "../action/packagesActions";
 import Select from "react-select";
 import { AI_TOURS_URL } from "../constants/commonConstants";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const TourGenerator = () => {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [numberOfDays, setNumberOfDays] = useState("");
+const TourGenerator = ({ isMainPage }) => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const id = queryParams.has("id") ? queryParams.get("id") : "";
+  const country = queryParams.has("country") ? queryParams.get("country") : "";
+  const days = queryParams.has("days") ? queryParams.get("days") : "";
+
+  const avaOption =
+    id !== "" && country !== "" ? { value: id, label: country } : "";
+
+  const [selectedOption, setSelectedOption] = useState(avaOption);
+  const [numberOfDays, setNumberOfDays] = useState(days);
 
   const dispatch = useDispatch();
   const { countries, error } = useSelector((state) => state.countries);
@@ -24,6 +33,7 @@ const TourGenerator = () => {
       borderColor: "#d9d9d9",
     }),
   };
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -48,7 +58,7 @@ const TourGenerator = () => {
             <div className="section-heading">
               <h2 className="section-title">Generate Tour By AI</h2>
             </div>
-            <div className="booking-content ai-generate">
+            <div className="booking-content ai-generate pd-no-bottom">
               <div className="row">
                 <div className="col-sm-6 col-md-2 mg-auto">
                   <h2>Search</h2>
@@ -60,6 +70,7 @@ const TourGenerator = () => {
                         styles={customStyles}
                         options={options}
                         onChange={handleOptionChange}
+                        value={selectedOption}
                       />
                     )}
                   </div>
@@ -73,20 +84,25 @@ const TourGenerator = () => {
                       type="number"
                       placeholder="Ex 1, 2, 10"
                       onChange={handleDaysChange}
+                      value={numberOfDays}
                     />
                   </div>
                 </div>
                 <div className="col-sm-6 col-md-2 mg-auto">
-                  <Link
-                    to={`${AI_TOURS_URL}?id=${
-                      selectedOption.value ? selectedOption.value : ""
-                    }&country=${
-                      selectedOption.label ? selectedOption.label : ""
-                    }&days=${numberOfDays ? numberOfDays : ""}`}
-                    className="round-btn"
-                  >
-                    Generate
-                  </Link>
+                  {isMainPage ? (
+                    <button className="round-btn">Generate</button>
+                  ) : (
+                    <Link
+                      to={`${AI_TOURS_URL}?id=${
+                        selectedOption.value ? selectedOption.value : ""
+                      }&country=${
+                        selectedOption.label ? selectedOption.label : ""
+                      }&days=${numberOfDays}`}
+                      className="round-btn"
+                    >
+                      Generate
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

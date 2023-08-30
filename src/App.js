@@ -64,6 +64,43 @@ function App() {
               </Layout>
             }
           />
+          {/*
+          <Route
+            path={AI_TOURS_URL}
+            element={
+              <Layout>
+                <GenerateAi />
+              </Layout>
+            }
+          >
+            <Route
+              path=":id?"
+              element={
+                <Layout>
+                  <GenerateAi />
+                </Layout>
+              }
+            >
+              <Route
+                path=":country?"
+                element={
+                  <Layout>
+                    <GenerateAi />
+                  </Layout>
+                }
+              >
+                <Route
+                  path=":days?"
+                  element={
+                    <Layout>
+                      <GenerateAi />
+                    </Layout>
+                  }
+                ></Route>
+              </Route>
+            </Route>
+          </Route>
+          */}
           <Route
             path={UAE_VISA_URL}
             element={

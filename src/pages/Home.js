@@ -58,7 +58,7 @@ function Home() {
             </div>
           </div>
         </section>
-        <TourGenerator />
+        <TourGenerator isMainPage={false} />
 
         <section className="home-destination pd-top">
           <div className="container">
@@ -140,8 +140,8 @@ function Home() {
             <div className="home-counter">
               <div className="container">
                 <div className="row">
-                  {viewcategory.map((vc) => (
-                    <div className="col-md-6">
+                  {viewcategory.map((vc, index) => (
+                    <div className="col-md-6" key={index}>
                       <article
                         className="offer-item"
                         style={{
@@ -150,7 +150,7 @@ function Home() {
                       >
                         <div className="offer-content">
                           <h3>{vc.name}</h3>
-                          <Link to="/contact" className="round-btn">
+                          <Link to={CONTACT_URL} className="round-btn">
                             Book Now
                           </Link>
                         </div>

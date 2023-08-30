@@ -6,6 +6,7 @@ import {
   categoriesReducers,
   countriesReducers,
   viewcategoryReducers,
+  generatedTourReducers,
 } from "./reducers/packageReducer";
 
 const reducer = combineReducers({
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   categories: categoriesReducers,
   countries: countriesReducers,
   viewcategory: viewcategoryReducers,
+  generatedTour: generatedTourReducers,
 });
 
 let initialState = {};

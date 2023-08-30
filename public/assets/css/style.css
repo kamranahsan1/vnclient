@@ -6933,7 +6933,10 @@ ul.styled-list li:before {
   padding-bottom: 50px;
 }
 .pd-no-bottom {
-  padding-bottom: 0!important;
+  padding-bottom: 0 !important;
+}
+.pd-no-top {
+  padding-top: 0 !important;
 }
 .inputError{
   border-color: red!important;

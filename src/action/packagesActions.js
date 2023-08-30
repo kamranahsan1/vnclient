@@ -1,20 +1,21 @@
 import axios from "axios";
 import {
+  API_LINK,
   ALL_COUNTRY_FAIL,
   ALL_COUNTRY_REQUEST,
   ALL_COUNTRY_SUCCESS,
   ALL_VISA_CATEGORY_FAIL,
   ALL_VISA_CATEGORY_REQUEST,
   ALL_VISA_CATEGORY_SUCCESS,
-  API_LINK,
-} from "../constants/commonConstants";
-import {
   ALL_PACKAGE_REQUEST,
   ALL_PACKAGE_SUCCESS,
   ALL_PACKAGE_FAIL,
   ALL_CATEGORY_REQUEST,
   ALL_CATEGORY_SUCCESS,
   ALL_CATEGORY_FAIL,
+  ALL_TOUR_REQUEST,
+  ALL_TOUR_SUCCESS,
+  ALL_TOUR_FAIL,
   CLEAR_ERRORS,
 } from "../constants/commonConstants";
 
@@ -64,6 +65,30 @@ export const getFeaturePackages = () => async (dispatch) => {
     });
   }
 };
+
+export const getTour =
+  (params = "") =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: ALL_TOUR_REQUEST });
+      const queryParams = new URLSearchParams(params).toString();
+      let link = `${API_LINK}/generate-tour${
+        queryParams ? `?${queryParams}` : ""
+      }`;
+      console.log("params1", link);
+
+      const { data } = await axios.get(link);
+      dispatch({
+        type: ALL_TOUR_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ALL_TOUR_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 export const getCategories = () => async (dispatch) => {
   try {

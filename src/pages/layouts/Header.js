@@ -216,7 +216,7 @@ const Header = () => {
                   </div>
                 </a>
               </div>
-              <div className="header-icon text-right">
+              <div className="header-icons text-right">
                 {/*                <div
                   className="header-search-icon d-inline-block"
                   onClick={openSearch}
