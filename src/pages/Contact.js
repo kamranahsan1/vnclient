@@ -3,11 +3,10 @@ import Banner from "./layouts/Banner";
 import MetaData from "./layouts/MetaData";
 import { useDispatch } from "react-redux";
 import { saveContact } from "../action/packagesActions";
-import CustomPopup from "./layouts/Popup";
+import Popup from "./layouts/Popup";
 
 function Contact() {
   const dispatch = useDispatch();
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const initialFormData = {
     name: "",
     email: "",
@@ -16,6 +15,7 @@ function Contact() {
     message: "",
   };
   const [formData, setFormData] = useState(initialFormData);
+  const [isDialogOpen, setDialogOpen] = React.useState(false);
 
   const [errors, setErrors] = useState({});
   const handleInputChange = (event) => {
@@ -49,20 +49,18 @@ function Contact() {
     try {
       dispatch(saveContact(formData));
       setFormData(initialFormData);
-      setIsPopupOpen(true);
+      setDialogOpen(true);
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
+
   const isValidEmail = (email) => {
     // Basic email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
-  };
   return (
     <Fragment>
       <MetaData title={`Contact Us`} />
@@ -134,11 +132,11 @@ function Contact() {
                 </div>
                 <div className="col-lg-6">
                   <div className="contact-from-wrap primary-bg">
-                    {isPopupOpen && (
-                      <CustomPopup isOpen={isPopupOpen} onClose={closePopup}>
+                    {isDialogOpen && (
+                      <Popup>
                         <h2>Query Sent</h2>
                         <p>We will contact you in shortly</p>
-                      </CustomPopup>
+                      </Popup>
                     )}
                     <form
                       method="get"
