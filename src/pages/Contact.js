@@ -3,7 +3,6 @@ import Banner from "./layouts/Banner";
 import MetaData from "./layouts/MetaData";
 import { useDispatch } from "react-redux";
 import { saveContact } from "../action/packagesActions";
-import Popup from "./layouts/Popup";
 
 function Contact() {
   const dispatch = useDispatch();
@@ -133,10 +132,10 @@ function Contact() {
                 <div className="col-lg-6">
                   <div className="contact-from-wrap primary-bg">
                     {isDialogOpen && (
-                      <Popup>
-                        <h2>Query Sent</h2>
-                        <p>We will contact you in shortly</p>
-                      </Popup>
+                      <div className="alert alert-success">
+                        <strong>Success!</strong> Request Submitted
+                        Successfully! Our team will contact shortly.
+                      </div>
                     )}
                     <form
                       method="get"
