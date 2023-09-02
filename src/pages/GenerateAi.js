@@ -72,7 +72,7 @@ const GenerateAi = () => {
     } else {
       navigate("");
     }
-    dispatch(getTour(p));
+    if (p.id !== "" && p.days !== "") dispatch(getTour(p));
   };
 
   useEffect(() => {

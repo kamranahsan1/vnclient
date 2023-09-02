@@ -1,8 +1,68 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Banner from "./layouts/Banner";
 import MetaData from "./layouts/MetaData";
+import { useDispatch } from "react-redux";
+import { saveContact } from "../action/packagesActions";
+import CustomPopup from "./layouts/Popup";
 
 function Contact() {
+  const dispatch = useDispatch();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const initialFormData = {
+    name: "",
+    email: "",
+    phone: "",
+    reason: "",
+    message: "",
+  };
+  const [formData, setFormData] = useState(initialFormData);
+
+  const [errors, setErrors] = useState({});
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const validationErrors = {};
+    if (!formData.name) {
+      validationErrors.name = "Name is required";
+    }
+    if (!formData.phone) {
+      validationErrors.phone = "Phone is required";
+    }
+    if (!formData.email) {
+      validationErrors.email = "Email is required";
+    } else if (!isValidEmail(formData.email)) {
+      validationErrors.email = "Invalid email format";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    try {
+      dispatch(saveContact(formData));
+      setFormData(initialFormData);
+      setIsPopupOpen(true);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+  const isValidEmail = (email) => {
+    // Basic email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
   return (
     <Fragment>
       <MetaData title={`Contact Us`} />
@@ -74,14 +134,29 @@ function Contact() {
                 </div>
                 <div className="col-lg-6">
                   <div className="contact-from-wrap primary-bg">
-                    <form method="get" className="contact-from">
+                    {isPopupOpen && (
+                      <CustomPopup isOpen={isPopupOpen} onClose={closePopup}>
+                        <h2>Query Sent</h2>
+                        <p>We will contact you in shortly</p>
+                      </CustomPopup>
+                    )}
+                    <form
+                      method="get"
+                      className="contact-from"
+                      onSubmit={handleSubmit}
+                    >
                       <p>
-                        <label>First Name</label>
+                        <label>Your Name</label>
                         <input
                           type="text"
                           name="name"
                           placeholder="Your Name*"
+                          value={formData.name}
+                          onChange={handleInputChange}
                         />
+                        {errors.name && (
+                          <span className="error-message">{errors.name}</span>
+                        )}
                       </p>
                       <p>
                         <label>Email Address</label>
@@ -89,7 +164,12 @@ function Contact() {
                           type="email"
                           name="email"
                           placeholder="Your Email*"
+                          value={formData.email}
+                          onChange={handleInputChange}
                         />
+                        {errors.email && (
+                          <span className="error-message">{errors.email}</span>
+                        )}
                       </p>
                       <p>
                         <label>Phone No</label>
@@ -97,22 +177,38 @@ function Contact() {
                           type="text"
                           name="phone"
                           placeholder="Your Phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
                         />
+                        {errors.phone && (
+                          <span className="error-message">{errors.phone}</span>
+                        )}
                       </p>
                       <p>
                         <label>Reason</label>
                         <br />
-                        <select name="" id="" className="full-width">
+                        <select
+                          name="reason"
+                          value={formData.reason}
+                          onChange={handleInputChange}
+                          className="full-width"
+                        >
                           <option value="">Select reason</option>
                           <option value="visa">Visa</option>
                           <option value="uae-tours">Uae Tours</option>
                           <option value="packages">Packages</option>
                         </select>
+                        {errors.reason && (
+                          <span className="error-message">{errors.reason}</span>
+                        )}
                       </p>
                       <p>
                         <label>Comments / Questions</label>
                         <textarea
                           rows="8"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
                           placeholder="Your Message*"
                         ></textarea>
                       </p>

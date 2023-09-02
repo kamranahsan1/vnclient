@@ -16,6 +16,9 @@ import {
   ALL_TOUR_REQUEST,
   ALL_TOUR_SUCCESS,
   ALL_TOUR_FAIL,
+  SAVE_CONTACT_REQUEST,
+  SAVE_CONTACT_SUCCESS,
+  SAVE_CONTACT_FAILURE,
   CLEAR_ERRORS,
 } from "../constants/commonConstants";
 
@@ -122,6 +125,7 @@ export const getCountries = () => async (dispatch) => {
     });
   }
 };
+
 export const getViewCategory = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_VISA_CATEGORY_REQUEST });
@@ -131,10 +135,25 @@ export const getViewCategory = () => async (dispatch) => {
       payload: data,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: ALL_VISA_CATEGORY_FAIL,
       payload: error.response.data.message,
+    });
+  }
+};
+
+export const saveContact = (formData) => async (dispatch) => {
+  try {
+    dispatch({ type: SAVE_CONTACT_REQUEST });
+    const response = await axios.post(`${API_LINK}/Contact`, formData);
+    dispatch({
+      type: SAVE_CONTACT_SUCCESS,
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: SAVE_CONTACT_FAILURE,
+      payload: error.message,
     });
   }
 };

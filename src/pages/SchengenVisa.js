@@ -34,8 +34,8 @@ const SchengenVisa = () => {
             <div className="container">
               {viewcategory &&
                 viewcategory.map((cate, index) =>
-                  index % 2 == 0 ? (
-                    <div className="row padding-down">
+                  index % 2 === 0 ? (
+                    <div className="row padding-down" key={index}>
                       <div className="col-md-5">
                         <div className="tab-section">
                           <div className="tab-container">
@@ -76,7 +76,7 @@ const SchengenVisa = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="row padding-down">
+                    <div className="row padding-down" key={index}>
                       <div className="col-md-7">
                         <figure className="career-detail-image">
                           <img src={cate.mainImage} alt="" />

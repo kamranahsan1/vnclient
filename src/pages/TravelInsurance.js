@@ -43,26 +43,23 @@ const TravelInsurance = () => {
                                 <p>
                                   Our travel insurance packages include a wide
                                   range of benefits and coverage, such as:
-                                  <ul>
-                                    <li>
-                                      Medical coverage for emergencies, illness,
-                                      and accidents
-                                    </li>
-                                    <li>
-                                      Trip cancellation and interruption
-                                      coverage
-                                    </li>
-                                    <li>
-                                      Baggage and personal effects coverage
-                                    </li>
-                                    <li>
-                                      Emergency travel assistance and evacuation
-                                    </li>
-                                    <li>
-                                      24/7 customer support and claims handling
-                                    </li>
-                                  </ul>
                                 </p>
+                                <ul>
+                                  <li>
+                                    Medical coverage for emergencies, illness,
+                                    and accidents
+                                  </li>
+                                  <li>
+                                    Trip cancellation and interruption coverage
+                                  </li>
+                                  <li>Baggage and personal effects coverage</li>
+                                  <li>
+                                    Emergency travel assistance and evacuation
+                                  </li>
+                                  <li>
+                                    24/7 customer support and claims handling
+                                  </li>
+                                </ul>
                               </div>
                             </div>
                           </div>

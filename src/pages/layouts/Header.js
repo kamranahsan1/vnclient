@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getCategories } from "../../action/packagesActions";
 import {
@@ -15,6 +15,7 @@ import {
 
 const Header = () => {
   const dispatch = useDispatch();
+  const lct = useLocation();
 
   const [isFixedHeader, setIsFixedHeader] = useState(false);
   const [isSearchIn, setIsSearchIn] = useState(false);
@@ -23,11 +24,28 @@ const Header = () => {
   const [showPackagesSubMenu, setShowPackagesSubMenu] = useState(false);
   const [showVisasSubMenu, setShowVisasSubMenu] = useState(false);
   const [showServicesSubMenu, setShowServicesSubMenu] = useState(false);
-  const [iscurrentPage, setCurrentPage] = useState(HOME_URL);
-
   const { categories, loading, error } = useSelector(
     (state) => state.categories
   );
+  const categorySlugs = categories.map(
+    (category) => `/package/${category.slug}`
+  );
+  const [iscurrentPage, setCurrentPage] = useState(
+    [
+      HOME_URL,
+      ABOUT_US_URL,
+      UAE_VISA_URL,
+      SCHENGEN_VISA_URL,
+      TRAVEL_INSURANCE_URL,
+      PICKUP_SERVICES_URL,
+      CONTACT_URL,
+      AI_TOURS_URL,
+      ...categorySlugs,
+    ].includes(lct.pathname)
+      ? lct.pathname
+      : HOME_URL
+  );
+  console.log(iscurrentPage);
 
   useEffect(() => {
     if (error) {
@@ -75,6 +93,11 @@ const Header = () => {
   const closeSearch = () => {
     setIsSearchIn(false);
   };
+
+  const navigationActive = (url) => {
+    setCurrentPage(url);
+  };
+
   const canvasOpen = () => {
     setisCanvasVisible(true);
   };
@@ -225,7 +248,7 @@ const Header = () => {
                     <i aria-hidden="true" className="fas fa-search"></i>
                   </a>
                 </div>
-        */}
+               */}
                 <div className="offcanvas-menu d-inline-block">
                   <a href="#" onClick={canvasOpen}>
                     <i aria-hidden="true" className="icon icon-burger-menu"></i>
@@ -241,18 +264,49 @@ const Header = () => {
               <div className="navigation-container d-none d-lg-block">
                 <nav id="navigation" className="navigation">
                   <ul>
-                    <li className="menu-active">
-                      <Link to={HOME_URL}>Home</Link>
+                    <li
+                      className={
+                        iscurrentPage === HOME_URL ? "menu-active" : ""
+                      }
+                    >
+                      <Link
+                        to={HOME_URL}
+                        onClick={() => {
+                          navigationActive(HOME_URL);
+                        }}
+                      >
+                        Home
+                      </Link>
                     </li>
-                    <li>
-                      <Link to={ABOUT_US_URL}>About Us</Link>
+                    <li
+                      className={
+                        iscurrentPage === ABOUT_US_URL ? "menu-active" : ""
+                      }
+                    >
+                      <Link
+                        to={ABOUT_US_URL}
+                        onClick={() => {
+                          navigationActive(ABOUT_US_URL);
+                        }}
+                      >
+                        About Us
+                      </Link>
                     </li>
-                    <li>
-                      <a href="javascript:void(0);">Packages</a>
+                    <li
+                      className={
+                        iscurrentPage.includes("/package") ? "menu-active" : ""
+                      }
+                    >
+                      <Link>Packages</Link>
                       <ul>
                         {categories &&
                           categories.map((category, index) => (
-                            <li key={index}>
+                            <li
+                              key={index}
+                              onClick={() => {
+                                navigationActive(`/package/${category.slug}`);
+                              }}
+                            >
                               <Link to={`/package/${category.slug}`}>
                                 {category.name}
                               </Link>
@@ -260,41 +314,97 @@ const Header = () => {
                           ))}
                       </ul>
                     </li>
-                    <li>
-                      <a href="javascript:void(0);">Visas</a>
+                    <li
+                      className={
+                        iscurrentPage === UAE_VISA_URL ||
+                        iscurrentPage === SCHENGEN_VISA_URL
+                          ? "menu-active"
+                          : ""
+                      }
+                    >
+                      <Link>Visas</Link>
                       <ul>
                         <li>
-                          <Link to={UAE_VISA_URL}>Uae Visa</Link>
+                          <Link
+                            to={UAE_VISA_URL}
+                            onClick={() => {
+                              navigationActive(UAE_VISA_URL);
+                            }}
+                          >
+                            Uae Visa
+                          </Link>
                         </li>
                         <li>
-                          <Link to={SCHENGEN_VISA_URL}>Schengen Visa</Link>
+                          <Link
+                            to={SCHENGEN_VISA_URL}
+                            onClick={() => {
+                              navigationActive(SCHENGEN_VISA_URL);
+                            }}
+                          >
+                            Schengen Visa
+                          </Link>
                         </li>
                       </ul>
                     </li>
-                    <li>
-                      <Link to={AI_TOURS_URL}>Generate Tour</Link>
+                    <li
+                      className={
+                        iscurrentPage === AI_TOURS_URL ? "menu-active" : ""
+                      }
+                    >
+                      <Link
+                        to={AI_TOURS_URL}
+                        onClick={() => {
+                          navigationActive(AI_TOURS_URL);
+                        }}
+                      >
+                        Generate Tour
+                      </Link>
                     </li>
-                    <li>
-                      <a href="javascript:void(0);">Our Services</a>
+                    <li
+                      className={
+                        iscurrentPage === TRAVEL_INSURANCE_URL ||
+                        iscurrentPage === PICKUP_SERVICES_URL
+                          ? "menu-active"
+                          : ""
+                      }
+                    >
+                      <Link>Our Services</Link>
                       <ul>
-                        {/*<li>
-                          <Link to="/hotels">Hotels</Link>
-                        </li>
                         <li>
-                          <Link to="/air-tickets">Air Tickets</Link>
-                        </li>*/}
-                        <li>
-                          <Link to={TRAVEL_INSURANCE_URL}>
+                          <Link
+                            to={TRAVEL_INSURANCE_URL}
+                            onClick={() => {
+                              navigationActive(TRAVEL_INSURANCE_URL);
+                            }}
+                          >
                             Travel Insurance
                           </Link>
                         </li>
                         <li>
-                          <Link to={PICKUP_SERVICES_URL}>Pickup Services</Link>
+                          <Link
+                            to={PICKUP_SERVICES_URL}
+                            onClick={() => {
+                              navigationActive(PICKUP_SERVICES_URL);
+                            }}
+                          >
+                            Pickup Services
+                          </Link>
                         </li>
                       </ul>
                     </li>
-                    <li>
-                      <Link to={CONTACT_URL}>contact us</Link>
+                    <li
+                      className={
+                        iscurrentPage === CONTACT_URL ? "menu-active" : ""
+                      }
+                    >
+                      <Link
+                        to={CONTACT_URL}
+                        onClick={() => {
+                          navigationActive(CONTACT_URL);
+                        }}
+                      >
+                        contact us
+                      </Link>
                     </li>
                   </ul>
                 </nav>
@@ -309,8 +419,7 @@ const Header = () => {
         </div>
         <div className="mobile-menu-container">
           <div className="slicknav_menu">
-            <a
-              href="#"
+            <Link
               aria-haspopup="true"
               onClick={menuToggle}
               className={
@@ -325,7 +434,7 @@ const Header = () => {
                 <span className="slicknav_icon-bar"></span>
                 <span className="slicknav_icon-bar"></span>
               </span>
-            </a>
+            </Link>
             <nav
               aria-hidden="false"
               role="menu"

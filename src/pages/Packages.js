@@ -90,11 +90,11 @@ const Packages = () => {
           title={category.name}
           desc="Our tours are structured to meet our customers’ expectations. We want to give you a memorable experience during your visit. This is why we have a dedicated team to guide you through your tour in Europe, Dubai, USA, UK, and Asia."
         />
-        <div class="no-content-section">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 offset-lg-2">
-                <div class="no-content-wrap">
+        <div className="no-content-section">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8 offset-lg-2">
+                <div className="no-content-wrap">
                   <h1>SORRY ! No Package Found</h1>
                   <p>New packages comming soon</p>
                 </div>
