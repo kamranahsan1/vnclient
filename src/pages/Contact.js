@@ -16,8 +16,8 @@ function Contact() {
   };
   const [formData, setFormData] = useState(initialFormData);
   const [isDialogOpen, setDialogOpen] = React.useState(false);
-
   const [errors, setErrors] = useState({});
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
