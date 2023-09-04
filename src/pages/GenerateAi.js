@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTour, getCountries, clearErrors } from "../action/packagesActions";
 import { useLocation, useNavigate } from "react-router-dom";
 import Select from "react-select";
+import { API_IMAGE } from "../constants/commonConstants";
 
 const GenerateAi = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,11 @@ const GenerateAi = () => {
 
   const [selectedOption, setSelectedOption] = useState(avaOption);
   const [numberOfDays, setNumberOfDays] = useState(days);
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [bannerData, setBannerData] = useState({
+    bg: "/assets/images/img7.jpg",
+    title: "Generate Your Tour",
+    desc: "",
+  });
 
   const { countries } = useSelector((state) => state.countries);
 
@@ -29,6 +34,7 @@ const GenerateAi = () => {
     value: country._id,
     label: country.name,
   }));
+
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -46,8 +52,18 @@ const GenerateAi = () => {
     (state) => state.generatedTour
   );
 
+  const findCountryById = (id) => {
+    return countries.find((country) => country._id === id);
+  };
+
   const handleOptionChange = (selected) => {
     setSelectedOption(selected);
+    var newcountry = findCountryById(selected.value);
+    setBannerData({
+      bg: `${API_IMAGE}/${newcountry.mainImage}`,
+      title: newcountry.name,
+      desc: newcountry.description,
+    });
   };
 
   const handleDaysChange = (event) => {
@@ -72,7 +88,18 @@ const GenerateAi = () => {
     } else {
       navigate("");
     }
-    if (p.id !== "" && p.days !== "") dispatch(getTour(p));
+    if (p.id !== "" && p.days !== "") {
+      var newcountry = findCountryById(p.id);
+      console.log("newcountry", newcountry);
+      if (newcountry) {
+        setBannerData({
+          bg: `${API_IMAGE}/${newcountry.mainImage}`,
+          title: newcountry.name,
+          desc: newcountry.description,
+        });
+      }
+      dispatch(getTour(p));
+    }
   };
 
   useEffect(() => {
@@ -85,9 +112,9 @@ const GenerateAi = () => {
       <main id="content" className="site-main">
         <section className="package-inner-page pd-no-bottom">
           <Banner
-            bg="/assets/images/img7.jpg"
-            title="Generate Your Tour"
-            desc=""
+            bg={bannerData.bg}
+            title={bannerData.title}
+            desc={bannerData.desc}
             padding="pd-no-bottom"
           />
         </section>
@@ -111,6 +138,8 @@ const GenerateAi = () => {
                             options={options}
                             onChange={handleOptionChange}
                             value={selectedOption}
+                            isSearchable
+                            maxMenuHeight={200}
                           />
                         )}
                       </div>
@@ -162,7 +191,7 @@ const GenerateAi = () => {
                       {tour.mainImage && (
                         <figure className="single-package-image">
                           <img
-                            src={tour.mainImage}
+                            src={`${API_IMAGE}/${tour.mainImage}`}
                             alt=""
                             className="full-width"
                           />

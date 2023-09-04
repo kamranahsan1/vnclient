@@ -6938,6 +6938,13 @@ ul.styled-list li:before {
 .pd-no-top {
   padding-top: 0 !important;
 }
+.pd-no-left {
+  padding-left: 0!important;
+}
+.pd-10-vertical{
+  padding-top: 10px!important;
+  padding-bottom: 10px!important;
+}
 .inputError{
   border-color: red!important;
 }

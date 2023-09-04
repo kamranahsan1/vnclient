@@ -3,8 +3,7 @@ import $ from "jquery";
 
 const Banner = ({ bg, title, desc, padding }) => {
   useEffect(() => {
-    const headerHeight =
-      $("#masthead").outerHeight() - $(".slicknav_menu").outerHeight();
+    const headerHeight = $("#masthead").outerHeight();
     $(".home-banner").css("padding-top", headerHeight);
     $(".inner-baner-container").css("padding-top", headerHeight);
   });

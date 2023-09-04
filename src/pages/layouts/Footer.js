@@ -102,23 +102,22 @@ const Footer = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="footer-menu">
-                    <ul>
-                      <li>
-                        <a href="policy.html">Privacy Policy</a>
+                  <div className="footer-menu pd-10-vertical pd-no-side">
+                    <ul className="pd-no-left">
+                      <li className="pd-no-left">
+                        <a href="#">Privacy Policy</a>
                       </li>
                       <li>
-                        <a href="policy.html">Term & Condition</a>
+                        <a href="#">Term & Condition</a>
                       </li>
                       <li>
-                        <a href="faq.html">FAQ</a>
+                        <a href="#">FAQ</a>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div className="col-lg-3 col-sm-6 text-left">
                   <aside className="widget widget_text">
-                    <h3 className="widget-title">CONTACT US</h3>
                     <div className="textwidget widget-text">
                       <p>
                         Feel free to contact and

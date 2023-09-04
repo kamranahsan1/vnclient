@@ -45,7 +45,6 @@ const Header = () => {
       ? lct.pathname
       : HOME_URL
   );
-  console.log(iscurrentPage);
 
   useEffect(() => {
     if (error) {
@@ -93,7 +92,6 @@ const Header = () => {
   const closeSearch = () => {
     setIsSearchIn(false);
   };
-
   const navigationActive = (url) => {
     setCurrentPage(url);
   };
@@ -119,7 +117,7 @@ const Header = () => {
           <div className="offcanvas-sidebar">
             <aside className="widget author_widget">
               <div className="widget-content text-center">
-                <div className="profile">
+                <div className="profiles">
                   <div className="socialgroup">
                     <ul>
                       <li>
@@ -261,6 +259,25 @@ const Header = () => {
         <div className="bottom-header">
           <div className="container">
             <div className="bottom-header-inner d-flex justify-content-between align-items-center">
+              <div class="header-social social-icon">
+                <ul>
+                  <li>
+                    <a href="https://www.facebook.com" target="_blank">
+                      <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.twitter.com" target="_blank">
+                      <i class="fab fa-twitter" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.youtube.com" target="_blank">
+                      <i class="fab fa-youtube" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
               <div className="navigation-container d-none d-lg-block">
                 <nav id="navigation" className="navigation">
                   <ul>
@@ -307,7 +324,10 @@ const Header = () => {
                                 navigationActive(`/package/${category.slug}`);
                               }}
                             >
-                              <Link to={`/package/${category.slug}`}>
+                              <Link
+                                to={`/package/${category.slug}`}
+                                onClick={() => setShowPackagesSubMenu(false)}
+                              >
                                 {category.name}
                               </Link>
                             </li>
@@ -487,7 +507,10 @@ const Header = () => {
                     {categories &&
                       categories.map((category, index) => (
                         <li key={index}>
-                          <Link to={`/package/${category.slug}`}>
+                          <Link
+                            to={`/package/${category.slug}`}
+                            onClick={() => setMenuToggle(false)}
+                          >
                             {category.name}
                           </Link>
                         </li>
