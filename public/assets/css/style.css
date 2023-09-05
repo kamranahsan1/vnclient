@@ -2379,6 +2379,7 @@ input[type=submit]:focus {
   -ms-transition: background-color 0.5s ease;
   -o-transition: background-color 0.5s ease;
   transition: background-color 0.5s ease;
+  box-shadow: inset 0 0 1000px rgba(255, 255, 255, .5);
 }
 
 @media screen and (min-width: 992px) {

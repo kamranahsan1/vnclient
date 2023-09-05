@@ -45,7 +45,11 @@ const GenerateAi = () => {
   };
 
   useEffect(() => {
-    dispatch(getCountries());
+    const fetchCons = async () => {
+      dispatch(getCountries());
+    };
+
+    fetchCons();
   }, [dispatch]);
 
   const { loading, status, tours, toursCount } = useSelector(
@@ -82,7 +86,11 @@ const GenerateAi = () => {
     if (numberOfDays) {
       p.days = numberOfDays;
       newParams.append("days", numberOfDays);
+    } else if (p.id != "") {
+      p.days = 5;
+      newParams.append("days", 5);
     }
+
     if (newParams.toString() !== "") {
       navigate(`?${newParams.toString()}`);
     } else {
@@ -90,7 +98,6 @@ const GenerateAi = () => {
     }
     if (p.id !== "" && p.days !== "") {
       var newcountry = findCountryById(p.id);
-      console.log("newcountry", newcountry);
       if (newcountry) {
         setBannerData({
           bg: `${API_IMAGE}/${newcountry.mainImage}`,
