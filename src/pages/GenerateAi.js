@@ -207,7 +207,7 @@ const GenerateAi = () => {
                       <div className="package-content-detail">
                         {tour.description !== "" && (
                           <article className="package-overview">
-                            <h4>OVERVIEW:</h4>
+                            <h4>OVERVIEW: IN {tour.time}</h4>
                             <p>{tour.description}</p>
                           </article>
                         )}
