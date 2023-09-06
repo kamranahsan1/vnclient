@@ -48,11 +48,9 @@ function Home() {
                       With{" "}
                       <span
                         style={{
-                          backgroundColor: "#FFBC4A",
-                          padding: 10,
+                          padding: "10px 0",
                           fontWeight: 600,
-                          fontSize: 18,
-                          color: "#3066AF",
+                          fontSize: 20,
                         }}
                       >
                         New Vision

@@ -1,10 +1,12 @@
 import { useState } from "react";
+import ModalBooking from "../pages/layouts/ModalBooking";
 
 const UaePackage = (props) => {
   const tour = props.tour;
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
+    console.log("open Modal");
     setIsOpen(true);
   }
 
@@ -78,6 +80,7 @@ const UaePackage = (props) => {
                     >
                       Book Now
                     </button>
+                    {openModal && <ModalBooking toggleModal={openModal} />}
                   </p>
                 </div>
               </div>

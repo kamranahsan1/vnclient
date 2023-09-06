@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { saveContact } from "../action/packagesActions";
+import { saveContact } from "../../action/packagesActions";
 
 const ModalBooking = ({ toggleModal }) => {
   const dispatch = useDispatch();
