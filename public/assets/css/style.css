@@ -7086,3 +7086,6 @@ ul.styled-list li:before {
 .alert-danger .alert-link {
   color: #843534;
 }
+.site-footer .top-footer {
+  padding-bottom: 80px;
+}

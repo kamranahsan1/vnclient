@@ -19,6 +19,9 @@ import {
   SAVE_CONTACT_REQUEST,
   SAVE_CONTACT_SUCCESS,
   SAVE_CONTACT_FAILURE,
+  SAVE_SUBSCRIBER_REQUEST,
+  SAVE_SUBSCRIBER_SUCCESS,
+  SAVE_SUBSCRIBER_FAILURE,
   CLEAR_ERRORS,
 } from "../constants/commonConstants";
 
@@ -153,6 +156,22 @@ export const saveContact = (formData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: SAVE_CONTACT_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
+export const saveSubscriber = (formData) => async (dispatch) => {
+  try {
+    dispatch({ type: SAVE_SUBSCRIBER_REQUEST });
+    const response = await axios.post(`${API_LINK}/subscribe`, formData);
+    dispatch({
+      type: SAVE_SUBSCRIBER_SUCCESS,
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: SAVE_SUBSCRIBER_FAILURE,
       payload: error.message,
     });
   }

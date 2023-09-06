@@ -2,11 +2,26 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HOME_URL } from "../../constants/commonConstants";
 import $ from "jquery";
-
+import { useDispatch } from "react-redux";
+import { saveSubscriber } from "../../action/packagesActions";
 const Footer = () => {
+  const dispatch = useDispatch();
   const [isBackToTopVisible, setIsBackToTopVisible] = useState(false);
-  const [isCanvasVisible, setisCanvasVisible] = useState(false);
-
+  const [isDialogOpen, setDialogOpen] = React.useState(false);
+  const [email, setEmail] = useState("");
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    try {
+      dispatch(saveSubscriber({ email: email }));
+      setEmail("");
+      setDialogOpen(true);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
   useEffect(() => {
     const handleScroll = () => {
       if ($(window).scrollTop() > 300) {
@@ -49,74 +64,6 @@ const Footer = () => {
                       Adventures - Book Your Dream Getaway Now!
                     </div>
                   </aside>
-                  <div className="social-icon">
-                    <ul>
-                      <li>
-                        <a
-                          href="https://www.facebook.com/"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <i
-                            className="fab fa-facebook-f"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.twitter.com/"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <i className="fab fa-twitter" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.youtube.com/"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <i className="fab fa-youtube" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.instagram.com/"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <i
-                            className="fab fa-instagram"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://www.linkedin.com/"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <i className="fab fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="footer-menu pd-10-vertical pd-no-side">
-                    <ul className="pd-no-left">
-                      <li className="pd-no-left">
-                        <a href="#">Privacy Policy</a>
-                      </li>
-                      <li>
-                        <a href="#">Term & Condition</a>
-                      </li>
-                      <li>
-                        <a href="#">FAQ</a>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
                 <div className="col-lg-3 col-sm-6 text-left">
                   <aside className="widget widget_text">
@@ -158,6 +105,95 @@ const Footer = () => {
                 </div>
               </div>
             </div>
+            <div className="lower-footer">
+              <div className="row align-items-center">
+                <div className="col-lg-6">
+                  <div className="footer-newsletter">
+                    <p>
+                      Subscribe our newsletter for more update &amp; news !!
+                    </p>
+                    <form className="newsletter" onSubmit={handleSubscribe}>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter Your Email"
+                        value={email}
+                        onChange={handleEmailChange}
+                        required
+                      />
+                      <button
+                        type="submit"
+                        className="outline-btn outline-btn-white"
+                      >
+                        Subscribe
+                      </button>
+                      {isDialogOpen && (
+                        <div
+                          className="alert"
+                          style={{
+                            color: "#ffffff",
+                          }}
+                        >
+                          <strong>Thanks for your Interested!</strong>.
+                        </div>
+                      )}
+                    </form>
+                  </div>
+                </div>
+                <div className="col-lg-6 text-right">
+                  <div className="social-icon">
+                    <ul>
+                      <li>
+                        <a href="https://www.facebook.com/" target="_blank">
+                          <i
+                            className="fab fa-facebook-f"
+                            aria-hidden="true"
+                          ></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www.twitter.com/" target="_blank">
+                          <i className="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www.youtube.com/" target="_blank">
+                          <i className="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www.instagram.com/" target="_blank">
+                          <i
+                            className="fab fa-instagram"
+                            aria-hidden="true"
+                          ></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www.linkedin.com/" target="_blank">
+                          <i className="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  {/* 
+                  <div className="footer-menu">
+                    <ul>
+                      <li>
+                        <a href="policy.html">Privacy Policy</a>
+                      </li>
+                      <li>
+                        <a href="policy.html">Term &amp; Condition</a>
+                      </li>
+                      <li>
+                        <a href="faq.html">FAQ</a>
+                      </li>
+                    </ul>
+                  </div>
+                  */}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="bottom-footer">
@@ -177,18 +213,6 @@ const Footer = () => {
       >
         <i className="fas fa-chevron-up"></i>
       </Link>
-      <div className="header-search-form">
-        <div className="container">
-          <div className="header-search-container">
-            <form className="search-form" role="search" method="get">
-              <input type="text" name="s" placeholder="Enter your text..." />
-            </form>
-            <Link className="search-close">
-              <i className="fas fa-times"></i>
-            </Link>
-          </div>
-        </div>
-      </div>
     </Fragment>
   );
 };
