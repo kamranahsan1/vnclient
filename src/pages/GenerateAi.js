@@ -108,7 +108,9 @@ const GenerateAi = () => {
       dispatch(getTour(p));
     }
   };
-
+  function isCompleteURL(str) {
+    return str.startsWith("http://") || str.startsWith("https://");
+  }
   useEffect(() => {
     handleGenerateClick();
   }, []);
@@ -198,7 +200,11 @@ const GenerateAi = () => {
                       {tour.mainImage && (
                         <figure className="single-package-image">
                           <img
-                            src={`${API_IMAGE}/${tour.mainImage}`}
+                            src={
+                              isCompleteURL(tour.mainImage)
+                                ? tour.mainImage
+                                : `${API_IMAGE}/${tour.mainImage}`
+                            }
                             alt=""
                             className="full-width"
                           />

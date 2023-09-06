@@ -1,4 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { HOME_URL } from "../../constants/commonConstants";
 import $ from "jquery";
 
 const Footer = () => {
@@ -34,13 +36,13 @@ const Footer = () => {
                 <div className="col-lg-9 col-sm-6">
                   <aside className="widget widget_text">
                     <div className="footer-logo">
-                      <a href="index.html">
+                      <Link to={HOME_URL}>
                         <img
                           src="/assets/images/logo-sign.png"
                           width="65"
                           alt=""
                         />
-                      </a>
+                      </Link>
                     </div>
                     <div className="textwidget widget-text">
                       NewVision Tours: Embrace the World with Unparalleled
@@ -166,8 +168,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <a
-        href="#"
+      <Link
         onClick={handleBackToTopClick}
         className="to-top-icon"
         style={{
@@ -175,7 +176,19 @@ const Footer = () => {
         }}
       >
         <i className="fas fa-chevron-up"></i>
-      </a>
+      </Link>
+      <div className="header-search-form">
+        <div className="container">
+          <div className="header-search-container">
+            <form clclassNameass="search-form" role="search" method="get">
+              <input type="text" name="s" placeholder="Enter your text..." />
+            </form>
+            <Link className="search-close">
+              <i className="fas fa-times"></i>
+            </Link>
+          </div>
+        </div>
+      </div>
     </Fragment>
   );
 };
