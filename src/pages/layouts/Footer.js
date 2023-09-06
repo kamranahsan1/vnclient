@@ -180,7 +180,7 @@ const Footer = () => {
       <div className="header-search-form">
         <div className="container">
           <div className="header-search-container">
-            <form clclassNameass="search-form" role="search" method="get">
+            <form className="search-form" role="search" method="get">
               <input type="text" name="s" placeholder="Enter your text..." />
             </form>
             <Link className="search-close">
