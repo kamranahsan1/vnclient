@@ -101,7 +101,9 @@ function Home() {
                             </div>
                           </div>
                           <h3>
-                            <a href="package-detail.html">{tour.name}</a>
+                            <Link to={`/package/International-packages`}>
+                              {tour.name}
+                            </Link>
                           </h3>
                         </div>
                       </article>
