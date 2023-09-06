@@ -259,21 +259,21 @@ const Header = () => {
         <div className="bottom-header">
           <div className="container">
             <div className="bottom-header-inner d-flex justify-content-between align-items-center">
-              <div class="header-social social-icon">
+              <div className="header-social social-icon">
                 <ul>
                   <li>
                     <a href="https://www.facebook.com" target="_blank">
-                      <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                      <i className="fab fa-facebook-f" aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
                     <a href="https://www.twitter.com" target="_blank">
-                      <i class="fab fa-twitter" aria-hidden="true"></i>
+                      <i className="fab fa-twitter" aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
                     <a href="https://www.youtube.com" target="_blank">
-                      <i class="fab fa-youtube" aria-hidden="true"></i>
+                      <i className="fab fa-youtube" aria-hidden="true"></i>
                     </a>
                   </li>
                 </ul>

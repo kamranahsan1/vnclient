@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveContact } from "../action/packagesActions";
 
-const Modal = ({ toggleModal }) => {
+const ModalBooking = ({ toggleModal }) => {
   const dispatch = useDispatch();
   const initialFormData = {
     name: "",
@@ -155,4 +155,4 @@ const Modal = ({ toggleModal }) => {
   );
 };
 
-export default Modal;
+export default ModalBooking;

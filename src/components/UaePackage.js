@@ -17,7 +17,7 @@ const UaePackage = (props) => {
               <img src={tour.mainImage} alt="" className="full-width" />
             </figure>
             <div className="package-content-detail">
-              {tour.description != "" && (
+              {tour.description !== "" && (
                 <article className="package-overview">
                   <h3>OVERVIEW :</h3>
                   <p>{tour.description}</p>
@@ -44,11 +44,11 @@ const UaePackage = (props) => {
             {tour.price.length > 0 && (
               <div className="booking-form-wrap">
                 <div className="booking-form-inner primary-bg">
-                  <h3>Pricing</h3>
+                  <h3 className="pd-no-bottom mb-0">Pricing</h3>
                   <div className="price-box">
                     {tour.price.map((price, index) => (
                       <div className="price-item" key={index}>
-                        {price.description != "" && (
+                        {price.description !== "" && (
                           <span className="price-label">
                             {price.description}:
                           </span>
@@ -65,7 +65,7 @@ const UaePackage = (props) => {
                       type="button"
                       className="outline-btn outline-btn-white theme-color"
                     >
-                      INQUIRY NOW
+                      Book Now
                     </button>
                   </p>
                 </div>

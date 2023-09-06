@@ -134,7 +134,7 @@ const Footer = () => {
                             color: "#ffffff",
                           }}
                         >
-                          <strong>Thanks for your Interested!</strong>.
+                          <strong>Thanks for your Interest!</strong>.
                         </div>
                       )}
                     </form>
