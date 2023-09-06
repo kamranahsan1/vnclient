@@ -44,6 +44,21 @@ function Home() {
                 <div className="row">
                   <div className="col-lg-8 offset-lg-2">
                     <h2 className="banner-title">JOURNEY TO EXPLORE WORLD</h2>
+                    <p>
+                      With{" "}
+                      <span
+                        style={{
+                          backgroundColor: "#FFBC4A",
+                          padding: 10,
+                          fontWeight: 600,
+                          fontSize: 18,
+                          color: "#3066AF",
+                        }}
+                      >
+                        New Vision
+                      </span>{" "}
+                      Travel and Tourism
+                    </p>
                     <div className="banner-btn">
                       <Link
                         to={CONTACT_URL}

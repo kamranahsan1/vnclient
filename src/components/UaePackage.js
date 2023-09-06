@@ -1,7 +1,17 @@
-import React from "react";
+import { useState } from "react";
 
 const UaePackage = (props) => {
   const tour = props.tour;
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <div className="container">
       <div className="row">
@@ -62,6 +72,7 @@ const UaePackage = (props) => {
                   </div>
                   <p>
                     <button
+                      onClick={openModal}
                       type="button"
                       className="outline-btn outline-btn-white theme-color"
                     >
