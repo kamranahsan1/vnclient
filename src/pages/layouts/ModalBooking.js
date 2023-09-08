@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import { saveContact } from "../../action/packagesActions";
 import { Modal, Button } from "react-bootstrap";
 
-const ModalBooking = ({ show, handleClose }) => {
+const ModalBooking = ({ show, handleClose, message }) => {
   const dispatch = useDispatch();
   const initialFormData = {
     name: "",
     email: "",
     phone: "",
-    reason: "",
-    message: "",
+    reason: "Query",
+    message: message,
   };
   const [formData, setFormData] = useState(initialFormData);
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -52,8 +52,19 @@ const ModalBooking = ({ show, handleClose }) => {
 
     try {
       dispatch(saveContact(formData));
-      setFormData(initialFormData);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        reason: "Query",
+        message: "",
+      });
       setDialogOpen(true);
+      setErrors({});
+      setTimeout(() => {
+        handleClose();
+        setDialogOpen(false);
+      }, 2000);
     } catch (error) {
       console.error("Error submitting form:", error);
     }

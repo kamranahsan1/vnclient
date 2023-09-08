@@ -1,8 +1,9 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "./layouts/MetaData";
 import { CONTACT_URL, SCHENGEN_VISA_URL } from "../constants/commonConstants";
 import { Link } from "react-router-dom";
+import ModalBooking from "../pages/layouts/ModalBooking";
 import {
   clearErrors,
   getFeaturePackages,
@@ -11,6 +12,8 @@ import {
 import TourGenerator from "../components/TourGenerator";
 function Home() {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+
   const { packages, error } = useSelector((state) => state.packages);
 
   useEffect(() => {
@@ -27,6 +30,13 @@ function Home() {
     dispatch(getViewCategory());
   }, [dispatch]);
 
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   return (
     <Fragment>
       <MetaData title={`Home`} />
@@ -88,25 +98,23 @@ function Home() {
                 {packages &&
                   packages.map((tour, index) => (
                     <div className="col-lg-4 col-md-6" key={index}>
-                      <article
-                        className="destination-item"
-                        style={{
-                          backgroundImage: `url(${tour.mainImage})`,
-                        }}
-                      >
-                        <div className="destination-content">
-                          <div className="rating-start-wrap">
-                            <div className="rating-start">
-                              <span style={{ width: "100%" }}></span>
+                      <Link to={`/package/International-packages`}>
+                        <article
+                          className="destination-item"
+                          style={{
+                            backgroundImage: `url(${tour.mainImage})`,
+                          }}
+                        >
+                          <div className="destination-content">
+                            <div className="rating-start-wrap">
+                              <div className="rating-start">
+                                <span style={{ width: "100%" }}></span>
+                              </div>
                             </div>
+                            <h3>{tour.name}</h3>
                           </div>
-                          <h3>
-                            <Link to={`/package/International-packages`}>
-                              {tour.name}
-                            </Link>
-                          </h3>
-                        </div>
-                      </article>
+                        </article>
+                      </Link>
                     </div>
                   ))}
               </div>
@@ -165,9 +173,14 @@ function Home() {
                       >
                         <div className="offer-content">
                           <h3>{vc.name}</h3>
-                          <Link to={CONTACT_URL} className="round-btn">
+                          <Link onClick={handleOpenModal} className="round-btn">
                             Book Now
                           </Link>
+                          <ModalBooking
+                            message={`Query Related for ${vc.name}`}
+                            show={showModal}
+                            handleClose={handleCloseModal}
+                          />
                         </div>
                       </article>
                     </div>

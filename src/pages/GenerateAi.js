@@ -3,15 +3,17 @@ import MetaData from "./layouts/MetaData";
 import Banner from "./layouts/Banner";
 import { useDispatch, useSelector } from "react-redux";
 import { getTour, getCountries, clearErrors } from "../action/packagesActions";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { API_IMAGE } from "../constants/commonConstants";
+import ModalBooking from "../pages/layouts/ModalBooking";
 
 const GenerateAi = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const [showModal, setShowModal] = useState(false);
 
   const id = queryParams.has("id") ? queryParams.get("id") : "";
   const country = queryParams.has("country") ? queryParams.get("country") : "";
@@ -114,7 +116,13 @@ const GenerateAi = () => {
   useEffect(() => {
     handleGenerateClick();
   }, []);
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   return (
     <Fragment>
       <MetaData title={"Generate Your Tour By AI"} />
@@ -134,7 +142,7 @@ const GenerateAi = () => {
                 <div className="section-heading">
                   <h2 className="section-title">Generate Tour By AI</h2>
                 </div>
-                <div className="booking-content ai-generate pd-no-bottom">
+                <div className="booking-content ai-generate">
                   <div className="row">
                     <div className="col-sm-6 col-md-2 mg-auto">
                       <h2>Search</h2>
@@ -215,6 +223,17 @@ const GenerateAi = () => {
                           <article className="package-overview">
                             <h4>OVERVIEW: IN {tour.time}</h4>
                             <p>{tour.description}</p>
+                            <Link
+                              onClick={handleOpenModal}
+                              className="round-btn"
+                            >
+                              Book Now
+                            </Link>
+                            <ModalBooking
+                              message={`Query Related for ${selectedOption.label}, ${tour.name} for ${numberOfDays} Days`}
+                              show={showModal}
+                              handleClose={handleCloseModal}
+                            />
                           </article>
                         )}
                       </div>

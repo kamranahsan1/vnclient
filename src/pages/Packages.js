@@ -25,7 +25,7 @@ const Packages = () => {
     if (category._id) {
       dispatch(getPackages({ category: category._id }, currentPage));
     }
-  }, [dispatch, alert, currentPage, error, category._id]);
+  }, [dispatch, currentPage, error, category._id]);
 
   if (category.viewType === "detail" && packages.length > 0) {
     return (
@@ -39,10 +39,12 @@ const Packages = () => {
               desc="Our tours are structured to meet our customers’ expectations. We want to give you a memorable experience during your visit. This is why we have a dedicated team to guide you through your tour in Europe, Dubai, USA, UK, and Asia."
             />
             <div className="inner-package-detail-wrap">
-              {packages &&
-                packages.map((tour) => (
-                  <UaePackage key={tour._id} tour={tour} />
-                ))}
+              <div className="container">
+                {packages &&
+                  packages.map((tour) => (
+                    <UaePackage key={tour._id} tour={tour} />
+                  ))}
+              </div>
             </div>
           </section>
         </main>

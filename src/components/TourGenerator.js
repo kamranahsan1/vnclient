@@ -58,7 +58,7 @@ const TourGenerator = ({ isMainPage }) => {
             <div className="section-heading">
               <h2 className="section-title">Generate Tour By AI</h2>
             </div>
-            <div className="booking-content ai-generate pd-no-bottom">
+            <div className="booking-content ai-generate">
               <div className="row">
                 <div className="col-sm-6 col-md-2 mg-auto">
                   <h2>Search</h2>
@@ -88,6 +88,7 @@ const TourGenerator = ({ isMainPage }) => {
                     />
                   </div>
                 </div>
+
                 <div className="col-sm-6 col-md-2 mg-auto">
                   {isMainPage ? (
                     <button className="round-btn">Generate</button>

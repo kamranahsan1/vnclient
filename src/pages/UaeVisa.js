@@ -1,9 +1,20 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Banner from "./layouts/Banner";
 import { Link } from "react-router-dom";
 import MetaData from "./layouts/MetaData";
+import ModalBooking from "../pages/layouts/ModalBooking";
 
 const UaeVisa = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <Fragment>
       <MetaData title={"Uae Visa"} />
@@ -76,9 +87,14 @@ const UaeVisa = () => {
                         spend up to 14 days in Dubai or the United Arab
                         Emirates. This is only a single-entry visa.
                       </p>
-                      <Link to="/contact" className="round-btn">
+                      <Link onClick={handleOpenModal} className="round-btn">
                         Book Now
                       </Link>
+                      <ModalBooking
+                        message={`Query Related for Dubai 14 Days Visa`}
+                        show={showModal}
+                        handleClose={handleCloseModal}
+                      />
                     </div>
                   </article>
                 </div>
@@ -97,9 +113,15 @@ const UaeVisa = () => {
                         long-term business trip or for recreation can apply for
                         a 1-month or 30 days Dubai Visa.
                       </p>
-                      <Link to="/contact" className="round-btn">
+
+                      <Link onClick={handleOpenModal} className="round-btn">
                         Book Now
                       </Link>
+                      <ModalBooking
+                        message={`Query Related for Dubai 1 Month Visa`}
+                        show={showModal}
+                        handleClose={handleCloseModal}
+                      />
                     </div>
                   </article>
                 </div>
@@ -118,9 +140,14 @@ const UaeVisa = () => {
                         multiple times within 60 days. Two months visa come with
                         single and multiple entry.
                       </p>
-                      <Link to="/contact" className="round-btn">
+                      <Link onClick={handleOpenModal} className="round-btn">
                         Book Now
                       </Link>
+                      <ModalBooking
+                        message={`Query Related for Dubai 2 Months Visa`}
+                        show={showModal}
+                        handleClose={handleCloseModal}
+                      />
                     </div>
                   </article>
                 </div>
@@ -139,9 +166,14 @@ const UaeVisa = () => {
                         enables tourists and visitors to enter into the United
                         Arab Emirates multiple times.
                       </p>
-                      <Link to="/contact" className="round-btn">
+                      <Link onClick={handleOpenModal} className="round-btn">
                         Book Now
                       </Link>
+                      <ModalBooking
+                        message={`Query Related for Dubai 5 Months Visa`}
+                        show={showModal}
+                        handleClose={handleCloseModal}
+                      />
                     </div>
                   </article>
                 </div>
@@ -293,9 +325,14 @@ const UaeVisa = () => {
                         entry), 90 days (multiple entry), 90 days (job seekers
                         entry), and Transit visa (single entry).
                       </p>
-                      <Link to="/contact" className="round-btn">
+                      <Link onClick={handleOpenModal} className="round-btn">
                         Book Now
                       </Link>
+                      <ModalBooking
+                        message={`Query Related for SHARJAH Visa`}
+                        show={showModal}
+                        handleClose={handleCloseModal}
+                      />
                     </div>
                   </article>
                 </div>
@@ -317,9 +354,14 @@ const UaeVisa = () => {
                         landmarks, and vibrant blend of tradition and
                         innovation.
                       </p>
-                      <Link to="/contact" className="round-btn">
+                      <Link onClick={handleOpenModal} className="round-btn">
                         Book Now
                       </Link>
+                      <ModalBooking
+                        message={`Query Related for Abu dhabi Visa`}
+                        show={showModal}
+                        handleClose={handleCloseModal}
+                      />
                     </div>
                   </article>
                 </div>

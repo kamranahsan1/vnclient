@@ -1,8 +1,18 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
+import ModalBooking from "../pages/layouts/ModalBooking";
 
 const DubaiDestination = (props) => {
   const tour = props.tour;
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <div className="col-md-6">
@@ -19,9 +29,14 @@ const DubaiDestination = (props) => {
             Price:
             <ins>AED {tour.price[0].amount.$numberDecimal}</ins>
           </div>
-          <Link to="/contact" className="round-btn">
+          <Link onClick={handleOpenModal} className="round-btn">
             Book Now
           </Link>
+          <ModalBooking
+            message={`Query Related for ${tour.name}`}
+            show={showModal}
+            handleClose={handleCloseModal}
+          />
         </div>
       </article>
     </div>

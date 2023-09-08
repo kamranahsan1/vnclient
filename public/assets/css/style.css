@@ -6934,6 +6934,9 @@ ul.styled-list li:before {
   padding-top: 50px;
   padding-bottom: 50px;
 }
+.pd-bottom {
+  padding-bottom: 50px;
+}
 .pd-no-bottom {
   padding-bottom: 0 !important;
 }
