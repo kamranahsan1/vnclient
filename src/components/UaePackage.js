@@ -3,16 +3,15 @@ import ModalBooking from "../pages/layouts/ModalBooking";
 
 const UaePackage = (props) => {
   const tour = props.tour;
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  function openModal() {
-    console.log("open Modal");
-    setIsOpen(true);
-  }
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <div className="container">
@@ -74,13 +73,16 @@ const UaePackage = (props) => {
                   </div>
                   <p>
                     <button
-                      onClick={openModal}
+                      onClick={handleOpenModal}
                       type="button"
                       className="outline-btn outline-btn-white theme-color"
                     >
                       Book Now
                     </button>
-                    {openModal && <ModalBooking toggleModal={openModal} />}
+                    <ModalBooking
+                      show={showModal}
+                      handleClose={handleCloseModal}
+                    />
                   </p>
                 </div>
               </div>

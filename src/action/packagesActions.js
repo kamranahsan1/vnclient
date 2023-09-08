@@ -41,6 +41,7 @@ export const getPackages =
         link += `&category=${params.category}`;
       }
 
+      console.log(link);
       const { data } = await axios.get(link);
 
       dispatch({

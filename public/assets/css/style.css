@@ -7090,3 +7090,7 @@ ul.styled-list li:before {
 .site-footer .top-footer {
   padding-bottom: 80px;
 }
+.modal-content{
+  background-color: transparent;
+      border: none;
+}

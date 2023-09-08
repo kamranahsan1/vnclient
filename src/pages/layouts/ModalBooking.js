@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveContact } from "../../action/packagesActions";
+import { Modal, Button } from "react-bootstrap";
 
-const ModalBooking = ({ toggleModal }) => {
+const ModalBooking = ({ show, handleClose }) => {
   const dispatch = useDispatch();
   const initialFormData = {
     name: "",
@@ -12,7 +13,7 @@ const ModalBooking = ({ toggleModal }) => {
     message: "",
   };
   const [formData, setFormData] = useState(initialFormData);
-  const [isDialogOpen, setDialogOpen] = React.useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
   const [errors, setErrors] = useState({});
 
   const isValidEmail = (email) => {
@@ -59,40 +60,74 @@ const ModalBooking = ({ toggleModal }) => {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <div className="contact-form-wrap primary-bg">
-          {isDialogOpen && (
-            <div className="alert alert-success">
-              <strong>Success!</strong> Request Submitted Successfully! Our team
-              will contact you shortly.
-            </div>
-          )}
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <p>
-              <label>Your Name</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name*"
-                value={formData.name}
-                onChange={handleInputChange}
-              />
-              {errors.name && (
-                <span className="error-message">{errors.name}</span>
-              )}
-            </p>
-            {/* Other form fields and validation messages */}
-            <p>
-              <input type="submit" name="submit" value="SUBMIT MESSAGE" />
-            </p>
-          </form>
+    <Modal show={show} onHide={handleClose} size="md">
+      <Modal.Body>
+        <div className="row">
+          <div className="contact-from-wrap primary-bg">
+            {isDialogOpen && (
+              <div className="alert alert-success">
+                <strong>Success!</strong> Request Submitted Successfully! Our
+                team will contact shortly.
+              </div>
+            )}
+            <form method="get" className="contact-from" onSubmit={handleSubmit}>
+              <p>
+                <label>Your Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name*"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
+                {errors.name && (
+                  <span className="error-message">{errors.name}</span>
+                )}
+              </p>
+              <p>
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email*"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                />
+                {errors.email && (
+                  <span className="error-message">{errors.email}</span>
+                )}
+              </p>
+              <p>
+                <label>Phone No</label>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Your Phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                />
+                {errors.phone && (
+                  <span className="error-message">{errors.phone}</span>
+                )}
+              </p>
+              <p>
+                <label>Comments / Questions</label>
+                <textarea
+                  rows="4"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Your Message*"
+                ></textarea>
+              </p>
+              <p>
+                <input type="submit" name="submit" value="SUBMIT" />
+              </p>
+            </form>
+          </div>
         </div>
-        <footer>
-          <button onClick={() => toggleModal(false)}>Close</button>
-        </footer>
-      </div>
-    </div>
+      </Modal.Body>
+    </Modal>
   );
 };
 

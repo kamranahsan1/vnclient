@@ -11,26 +11,21 @@ const Packages = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [category, setCategory] = useState({});
-
   const { categories } = useSelector((state) => state.categories);
-
-  useEffect(() => {
-    const foundCategory = categories.find((category) =>
-      category.slug.includes(params.category)
-    );
-    setCategory(foundCategory || {});
-  }, [categories, params.category]);
-
   const { packages, error } = useSelector((state) => state.packages);
+  const category =
+    categories.find((cat) => cat.slug.includes(params.category)) || {};
 
   useEffect(() => {
     if (error) {
       alert(error);
       dispatch(clearErrors());
     }
-    dispatch(getPackages({ category: category._id }, currentPage));
-  }, [dispatch, alert, params, currentPage, error, category._id]);
+
+    if (category._id) {
+      dispatch(getPackages({ category: category._id }, currentPage));
+    }
+  }, [dispatch, alert, currentPage, error, category._id]);
 
   if (category.viewType === "detail" && packages.length > 0) {
     return (
