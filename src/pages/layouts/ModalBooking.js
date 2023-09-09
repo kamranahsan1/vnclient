@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveContact } from "../../action/packagesActions";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 const ModalBooking = ({ show, handleClose, message }) => {
   const dispatch = useDispatch();

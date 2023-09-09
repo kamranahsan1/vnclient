@@ -88,7 +88,7 @@ const GenerateAi = () => {
     if (numberOfDays) {
       p.days = numberOfDays;
       newParams.append("days", numberOfDays);
-    } else if (p.id != "") {
+    } else if (p.id !== "") {
       p.days = 5;
       newParams.append("days", 5);
     }

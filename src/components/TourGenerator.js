@@ -88,7 +88,16 @@ const TourGenerator = ({ isMainPage }) => {
                     />
                   </div>
                 </div>
-
+                <div className="col-sm-6 col-md-3 mg-auto">
+                  <div className="form-group">
+                    <input
+                      type="number"
+                      placeholder="Ex 1, 2, 10"
+                      onChange={handleDaysChange}
+                      value={numberOfDays}
+                    />
+                  </div>
+                </div>
                 <div className="col-sm-6 col-md-2 mg-auto">
                   {isMainPage ? (
                     <button className="round-btn">Generate</button>
