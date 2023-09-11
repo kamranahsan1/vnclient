@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveContact } from "../../action/packagesActions";
 import { Modal } from "react-bootstrap";
 
 const ModalBooking = ({ show, handleClose, message }) => {
   const dispatch = useDispatch();
-  const initialFormData = {
-    name: "",
-    email: "",
-    phone: "",
-    reason: "Query",
-    message: message,
-  };
+  // Define initialFormData using useMemo
+  const initialFormData = useMemo(
+    () => ({
+      name: "",
+      email: "",
+      phone: "",
+      reason: "Query",
+      message: message,
+    }),
+    [message]
+  );
   const [formData, setFormData] = useState(initialFormData);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [errors, setErrors] = useState({});
@@ -72,6 +76,7 @@ const ModalBooking = ({ show, handleClose, message }) => {
 
   useEffect(() => {
     if (!show) {
+      console.log(initialFormData);
       setFormData(initialFormData);
       setErrors({});
     }
