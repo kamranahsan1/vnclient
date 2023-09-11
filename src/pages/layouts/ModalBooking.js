@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveContact } from "../../action/packagesActions";
 import { Modal } from "react-bootstrap";
@@ -69,12 +69,6 @@ const ModalBooking = ({ show, handleClose, message }) => {
       console.error("Error submitting form:", error);
     }
   };
-
-  useEffect(() => {
-    return () => {
-      setDialogOpen(false);
-    };
-  }, []);
 
   return (
     <Modal show={show} onHide={handleClose} size="md">

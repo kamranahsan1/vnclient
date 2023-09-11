@@ -14,6 +14,7 @@ const GenerateAi = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const [showModal, setShowModal] = useState(false);
+  const [selectedTour, setSelectedTour] = useState({});
 
   const id = queryParams.has("id") ? queryParams.get("id") : "";
   const country = queryParams.has("country") ? queryParams.get("country") : "";
@@ -116,7 +117,9 @@ const GenerateAi = () => {
   useEffect(() => {
     handleGenerateClick();
   }, []);
-  const handleOpenModal = () => {
+
+  const handleOpenModal = (tour) => {
+    setSelectedTour(tour);
     setShowModal(true);
   };
 
@@ -127,6 +130,13 @@ const GenerateAi = () => {
     <Fragment>
       <MetaData title={"Generate Your Tour By AI"} />
       <main id="content" className="site-main">
+        {showModal && (
+          <ModalBooking
+            message={`Query Related for ${selectedOption.label}, ${selectedTour.name} for ${numberOfDays} Days`}
+            show={showModal}
+            handleClose={handleCloseModal}
+          />
+        )}
         <section className="package-inner-page pd-no-bottom">
           <Banner
             bg={bannerData.bg}
@@ -188,7 +198,6 @@ const GenerateAi = () => {
             </div>
           </div>
         </section>
-
         <section className="home-offer pd-top pd-no-top">
           {tours && toursCount ? (
             tours.map((tour, index) => (
@@ -229,11 +238,6 @@ const GenerateAi = () => {
                             >
                               Book Now
                             </Link>
-                            <ModalBooking
-                              message={`Query Related for ${selectedOption.label}, ${tour.name} for ${numberOfDays} Days`}
-                              show={showModal}
-                              handleClose={handleCloseModal}
-                            />
                           </article>
                         )}
                       </div>
