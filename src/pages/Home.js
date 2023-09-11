@@ -41,13 +41,6 @@ function Home() {
   return (
     <Fragment>
       <MetaData title={`Home`} />
-      {showModal && (
-        <ModalBooking
-          message={`Query Related for ${ModalQuery}`}
-          show={showModal}
-          handleClose={handleCloseModal}
-        />
-      )}
       <main id="content" className="site-main">
         <section className="home-banner-section home-banner-slider">
           <div
