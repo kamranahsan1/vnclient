@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const UaePackage = (props) => {
   const { tour, handleOpenModal } = props;
 

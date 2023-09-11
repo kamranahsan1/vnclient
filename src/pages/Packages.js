@@ -42,11 +42,7 @@ const Packages = () => {
     return (
       <Fragment>
         <MetaData title={category.name ? category.name : ""} />
-        <ModalBooking
-          message={`Query Related for ${ModalName}`}
-          show={showModal}
-          handleClose={handleCloseModal}
-        />
+
         <main id="content" className="site-main">
           <section className="package-inner-page">
             <Banner

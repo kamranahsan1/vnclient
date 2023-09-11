@@ -131,13 +131,6 @@ const GenerateAi = () => {
     <Fragment>
       <MetaData title={"Generate Your Tour By AI"} />
       <main id="content" className="site-main">
-        {showModal && (
-          <ModalBooking
-            message={`Query Related for ${selectedOption.label}, ${selectedTour} for ${numberOfDays} Days`}
-            show={showModal}
-            handleClose={handleCloseModal}
-          />
-        )}
         <section className="package-inner-page pd-no-bottom">
           <Banner
             bg={bannerData.bg}

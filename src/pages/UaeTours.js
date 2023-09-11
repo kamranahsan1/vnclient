@@ -45,13 +45,6 @@ function UaeTours() {
             title="UAE TOURS"
             desc="Our tours are structured to meet our customers’ expectations. We want to give you a memorable experience during your visit. This is why we have a dedicated team to guide you through your tour in Europe, Dubai, USA, UK, and Asia."
           />
-          {handleOpenModal && (
-            <ModalBooking
-              message={`Query Related for ${showPackage}`}
-              show={showModal}
-              handleClose={handleCloseModal}
-            />
-          )}
           <div className="inner-package-detail-wrap">
             {packages &&
               packages.map((tour) => (

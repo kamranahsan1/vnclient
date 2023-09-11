@@ -20,7 +20,7 @@ const DubaiTours = () => {
       dispatch(clearErrors());
     }
     dispatch(getDubaiPackages(params, currentPage));
-  }, [dispatch, alert, params, currentPage]);
+  }, [dispatch, params, currentPage, error]);
 
   return (
     <Fragment>
