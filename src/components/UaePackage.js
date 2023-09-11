@@ -1,18 +1,7 @@
 import { useState } from "react";
-import ModalBooking from "../pages/layouts/ModalBooking";
 
 const UaePackage = (props) => {
-  const tour = props.tour;
-
-  const [showModal, setShowModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+  const { tour, handleOpenModal } = props;
 
   return (
     <div className="row pd-bottom">
@@ -73,17 +62,12 @@ const UaePackage = (props) => {
                 </div>
                 <p>
                   <button
-                    onClick={handleOpenModal}
+                    onClick={() => handleOpenModal(tour.name)}
                     type="button"
                     className="outline-btn outline-btn-white theme-color"
                   >
                     Book Now
                   </button>
-                  <ModalBooking
-                    message={`Query Related for ${tour.name}`}
-                    show={showModal}
-                    handleClose={handleCloseModal}
-                  />
                 </p>
               </div>
             </div>

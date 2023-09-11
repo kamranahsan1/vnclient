@@ -5,7 +5,6 @@ import { Modal } from "react-bootstrap";
 
 const ModalBooking = ({ show, handleClose, message }) => {
   const dispatch = useDispatch();
-  // Define initialFormData using useMemo
   const initialFormData = useMemo(
     () => ({
       name: "",

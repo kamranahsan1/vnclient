@@ -6,16 +6,27 @@ import MetaData from "./layouts/MetaData";
 import Banner from "./layouts/Banner";
 import UaePackage from "../components/UaePackage";
 import DubaiDestination from "../components/DubaiDestination";
+import ModalBooking from "../pages/layouts/ModalBooking";
 
 const Packages = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
+  const [ModalName, setModalName] = useState(1);
   const { categories } = useSelector((state) => state.categories);
   const { packages, error } = useSelector((state) => state.packages);
   const category =
     categories.find((cat) => cat.slug.includes(params.category)) || {};
+  const [showModal, setShowModal] = useState(false);
 
+  const handleOpenModal = (name) => {
+    setModalName(name);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   useEffect(() => {
     if (error) {
       alert(error);
@@ -31,6 +42,11 @@ const Packages = () => {
     return (
       <Fragment>
         <MetaData title={category.name ? category.name : ""} />
+        <ModalBooking
+          message={`Query Related for ${ModalName}`}
+          show={showModal}
+          handleClose={handleCloseModal}
+        />
         <main id="content" className="site-main">
           <section className="package-inner-page">
             <Banner
@@ -42,7 +58,11 @@ const Packages = () => {
               <div className="container">
                 {packages &&
                   packages.map((tour) => (
-                    <UaePackage key={tour._id} tour={tour} />
+                    <UaePackage
+                      key={tour._id}
+                      tour={tour}
+                      handleOpenModal={handleOpenModal}
+                    />
                   ))}
               </div>
             </div>
