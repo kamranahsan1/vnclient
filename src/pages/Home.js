@@ -13,7 +13,7 @@ import TourGenerator from "../components/TourGenerator";
 function Home() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-
+  const [ModalQuery, setModalQuery] = useState("");
   const { packages, error } = useSelector((state) => state.packages);
 
   useEffect(() => {
@@ -30,7 +30,8 @@ function Home() {
     dispatch(getViewCategory());
   }, [dispatch]);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (name) => {
+    setModalQuery(name);
     setShowModal(true);
   };
 
@@ -40,6 +41,13 @@ function Home() {
   return (
     <Fragment>
       <MetaData title={`Home`} />
+      {showModal && (
+        <ModalBooking
+          message={`Query Related for ${ModalQuery}`}
+          show={showModal}
+          handleClose={handleCloseModal}
+        />
+      )}
       <main id="content" className="site-main">
         <section className="home-banner-section home-banner-slider">
           <div
@@ -173,14 +181,12 @@ function Home() {
                       >
                         <div className="offer-content">
                           <h3>{vc.name}</h3>
-                          <Link onClick={handleOpenModal} className="round-btn">
+                          <Link
+                            onClick={() => handleOpenModal(vc.name)}
+                            className="round-btn"
+                          >
                             Book Now
                           </Link>
-                          <ModalBooking
-                            message={`Query Related for ${vc.name}`}
-                            show={showModal}
-                            handleClose={handleCloseModal}
-                          />
                         </div>
                       </article>
                     </div>
@@ -195,7 +201,6 @@ function Home() {
             </div>
           </section>
         )}
-
         <section className="home-callback bg-color-callback primary-bg">
           <div className="container">
             <div className="row align-items-center">
