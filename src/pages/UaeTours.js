@@ -22,7 +22,7 @@ function UaeTours() {
       dispatch(clearErrors());
     }
     dispatch(getUaePackages(params, currentPage));
-  }, [dispatch, alert, params, currentPage]);
+  }, [dispatch, alert, params, currentPage, error]);
 
   return (
     <Fragment>
