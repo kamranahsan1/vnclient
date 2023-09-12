@@ -144,35 +144,20 @@ const Footer = () => {
                   <div className="social-icon">
                     <ul>
                       <li>
-                        <a href="https://www.facebook.com/" target="_blank">
+                        <Link to="https://www.facebook.com/" target="_blank">
                           <i
                             className="fab fa-facebook-f"
                             aria-hidden="true"
                           ></i>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="https://www.twitter.com/" target="_blank">
-                          <i className="fab fa-twitter" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.youtube.com/" target="_blank">
-                          <i className="fab fa-youtube" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.instagram.com/" target="_blank">
+                        <Link to="https://www.facebook.com/" target="_blank">
                           <i
                             className="fab fa-instagram"
                             aria-hidden="true"
                           ></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.linkedin.com/" target="_blank">
-                          <i className="fab fa-linkedin" aria-hidden="true"></i>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>

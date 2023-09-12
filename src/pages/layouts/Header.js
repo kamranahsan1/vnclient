@@ -115,51 +115,6 @@ const Header = () => {
       >
         <div className="offcanvas-inner">
           <div className="offcanvas-sidebar">
-            <aside className="widget author_widget">
-              <div className="widget-content text-center">
-                <div className="profiles">
-                  <div className="socialgroup">
-                    <ul>
-                      <li>
-                        {" "}
-                        <a target="_blank" href="#">
-                          {" "}
-                          <i className="fab fa-facebook"></i>{" "}
-                        </a>{" "}
-                      </li>
-                      <li>
-                        {" "}
-                        <a target="_blank" href="#">
-                          {" "}
-                          <i className="fab fa-google"></i>{" "}
-                        </a>{" "}
-                      </li>
-                      <li>
-                        {" "}
-                        <a target="_blank" href="#">
-                          {" "}
-                          <i className="fab fa-twitter"></i>{" "}
-                        </a>{" "}
-                      </li>
-                      <li>
-                        {" "}
-                        <a target="_blank" href="#">
-                          {" "}
-                          <i className="fab fa-instagram"></i>{" "}
-                        </a>{" "}
-                      </li>
-                      <li>
-                        {" "}
-                        <a target="_blank" href="#">
-                          {" "}
-                          <i className="fab fa-pinterest"></i>{" "}
-                        </a>{" "}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </aside>
             <aside className="widget widget_text text-center">
               <h3 className="widget-title">CONTACT US</h3>
               <div className="textwidget widget-text">
@@ -189,9 +144,9 @@ const Header = () => {
               </div>
             </aside>
           </div>
-          <a href="#" className="offcanvas-close" onClick={canvasClose}>
+          <Link className="offcanvas-close" onClick={canvasClose}>
             <i className="fas fa-times"></i>
-          </a>
+          </Link>
         </div>
         <div className="overlay"></div>
       </div>
@@ -262,19 +217,14 @@ const Header = () => {
               <div className="header-social social-icon">
                 <ul>
                   <li>
-                    <a href="https://www.facebook.com" target="_blank">
+                    <Link to="https://www.facebook.com/" target="_blank">
                       <i className="fab fa-facebook-f" aria-hidden="true"></i>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="https://www.twitter.com" target="_blank">
-                      <i className="fab fa-twitter" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.youtube.com" target="_blank">
+                    <Link to="https://www.youtube.com" target="_blank">
                       <i className="fab fa-youtube" aria-hidden="true"></i>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -487,8 +437,8 @@ const Header = () => {
                     className="slicknav_parent-link slicknav_row"
                     onClick={togglePackagesSubMenu}
                   >
-                    <a href="javascript:void(0);">Packages</a>
-                    <a
+                    <Link>Packages</Link>
+                    <Link
                       href="#"
                       role="menuitem"
                       aria-haspopup="true"
@@ -497,7 +447,7 @@ const Header = () => {
                       <span className="slicknav_arrow">
                         <i className="fas fa-plus"></i>
                       </span>
-                    </a>
+                    </Link>
                   </span>
                   <ul
                     role="menu"
@@ -522,9 +472,8 @@ const Header = () => {
                     className="slicknav_parent-link slicknav_row"
                     onClick={toggleVisasSubMenu}
                   >
-                    <a href="javascript:void(0);">Visas</a>
-                    <a
-                      href="#"
+                    <Link>Visas</Link>
+                    <Link
                       role="menuitem"
                       aria-haspopup="true"
                       className="slicknav_item"
@@ -532,7 +481,7 @@ const Header = () => {
                       <span className="slicknav_arrow">
                         <i className="fas fa-plus"></i>
                       </span>
-                    </a>
+                    </Link>
                   </span>
                   <ul
                     role="menu"
