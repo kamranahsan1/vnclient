@@ -15,9 +15,14 @@ const GenerateAi = () => {
   const queryParams = new URLSearchParams(location.search);
   const [showModal, setShowModal] = useState(false);
   const [selectedTour, setSelectedTour] = useState({});
-
+  const visitType = [
+    { value: "general", label: "General" },
+    { value: "site-seen", label: "Site Seen" },
+    { value: "event-visit", label: "Event Visit" },
+  ];
   const id = queryParams.has("id") ? queryParams.get("id") : "";
   const country = queryParams.has("country") ? queryParams.get("country") : "";
+  const type = queryParams.has("type") ? queryParams.get("type") : "";
   const days = queryParams.has("days") ? queryParams.get("days") : 7;
 
   const avaOption =
@@ -38,6 +43,18 @@ const GenerateAi = () => {
     label: country.name,
   }));
 
+  let vType = queryParams.has("type")
+    ? visitType.find((item) => item.value === queryParams.has("type"))
+    : visitType[0];
+  if (!vType) {
+    vType = visitType[0];
+  }
+  console.log("vType", vType);
+
+  const [selectedType, setSelectedType] = useState(vType);
+
+  console.log("selectedType1", selectedType);
+
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -51,7 +68,6 @@ const GenerateAi = () => {
     const fetchCons = async () => {
       dispatch(getCountries());
     };
-
     fetchCons();
   }, [dispatch]);
 
@@ -85,13 +101,19 @@ const GenerateAi = () => {
       p.country = selectedOption.label;
       newParams.append("id", selectedOption.value);
       newParams.append("country", selectedOption.label);
+
+      console.log("selectedType2", selectedType);
+      if (selectedType && selectedType.value != "general") {
+        p.type = selectedType.value;
+        newParams.append("type", selectedType.value);
+      }
     }
     if (numberOfDays) {
       p.days = numberOfDays;
       newParams.append("days", numberOfDays);
     } else if (p.id !== "") {
       p.days = 5;
-      newParams.append("days", 5);
+      newParams.append("days", 7);
     }
 
     if (newParams.toString() !== "") {
@@ -117,9 +139,10 @@ const GenerateAi = () => {
   useEffect(() => {
     handleGenerateClick();
   }, []);
-
+  const handleTypeChange = (selected) => {
+    setSelectedType(selected);
+  };
   const handleOpenModal = (tour) => {
-    console.log(tour);
     setSelectedTour(tour);
     setShowModal(true);
   };
@@ -131,6 +154,13 @@ const GenerateAi = () => {
     <Fragment>
       <MetaData title={"Generate Your Tour By AI"} />
       <main id="content" className="site-main">
+        {showModal && (
+          <ModalBooking
+            message={`Query Related for ${selectedOption.label}, ${selectedTour} for ${numberOfDays} Days`}
+            show={showModal}
+            handleClose={handleCloseModal}
+          />
+        )}
         <section className="package-inner-page pd-no-bottom">
           <Banner
             bg={bannerData.bg}
@@ -148,34 +178,42 @@ const GenerateAi = () => {
                 </div>
                 <div className="booking-content ai-generate">
                   <div className="row">
-                    <div className="col-sm-6 col-md-2 mg-auto">
-                      <h2>Search</h2>
-                    </div>
-                    <div className="col-sm-6 col-md-3 mg-auto">
+                    <div className="col-sm-4">
                       <div className="form-group">
+                        <h3>Search</h3>
                         {options && (
                           <Select
                             styles={customStyles}
                             options={options}
                             onChange={handleOptionChange}
                             value={selectedOption}
-                            isSearchable
-                            maxMenuHeight={200}
                           />
                         )}
                       </div>
                     </div>
-                    <div className="col-sm-6 col-md-2 mg-auto">
-                      <h2>Days</h2>
-                    </div>
-                    <div className="col-sm-6 col-md-3 mg-auto">
+                    <div className="col-sm-4">
                       <div className="form-group">
+                        <h3>Days</h3>
                         <input
                           type="number"
+                          className="generate-input"
                           placeholder="Ex 1, 2, 10"
                           onChange={handleDaysChange}
                           value={numberOfDays}
                         />
+                      </div>
+                    </div>
+                    <div className="col-sm-4">
+                      <div className="form-group">
+                        <h3> Visit Type</h3>
+                        {options && (
+                          <Select
+                            styles={customStyles}
+                            options={visitType}
+                            onChange={handleTypeChange}
+                            value={selectedType}
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="col-sm-6 col-md-2 mg-auto">

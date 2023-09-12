@@ -5,18 +5,28 @@ import Select from "react-select";
 import { AI_TOURS_URL } from "../constants/commonConstants";
 import { Link, useLocation } from "react-router-dom";
 
-const TourGenerator = ({ isMainPage }) => {
+const TourGenerator = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const visitType = [
+    { value: "general", label: "General" },
+    { value: "site-seen", label: "Site Seen" },
+    { value: "event-visit", label: "Event Visit" },
+  ];
   const id = queryParams.has("id") ? queryParams.get("id") : "";
   const country = queryParams.has("country") ? queryParams.get("country") : "";
   const days = queryParams.has("days") ? queryParams.get("days") : "";
 
-  const avaOption =
-    id !== "" && country !== "" ? { value: id, label: country } : "";
-
-  const [selectedOption, setSelectedOption] = useState(avaOption);
   const [numberOfDays, setNumberOfDays] = useState(days);
+  const [selectedOption, setSelectedOption] = useState(
+    id !== "" && country !== "" ? { value: id, label: country } : ""
+  );
+
+  const matchingType = queryParams.has("type")
+    ? visitType.find((item) => item.value === queryParams.has("type"))
+    : visitType[0];
+
+  const [selectedType, setSelectedType] = useState(matchingType);
 
   const dispatch = useDispatch();
   const { countries, error } = useSelector((state) => state.countries);
@@ -46,6 +56,10 @@ const TourGenerator = ({ isMainPage }) => {
     setSelectedOption(selected);
   };
 
+  const handleTypeChange = (selected) => {
+    setSelectedType(selected);
+  };
+
   const handleDaysChange = (event) => {
     setNumberOfDays(parseInt(event.target.value));
   };
@@ -58,13 +72,12 @@ const TourGenerator = ({ isMainPage }) => {
             <div className="section-heading">
               <h2 className="section-title">Generate Tour By AI</h2>
             </div>
+
             <div className="booking-content ai-generate">
               <div className="row">
-                <div className="col-sm-6 col-md-2 mg-auto">
-                  <h2>Search</h2>
-                </div>
-                <div className="col-sm-6 col-md-3 mg-auto">
+                <div className="col-sm-4">
                   <div className="form-group">
+                    <h3>Search</h3>
                     {options && (
                       <Select
                         styles={customStyles}
@@ -75,44 +88,44 @@ const TourGenerator = ({ isMainPage }) => {
                     )}
                   </div>
                 </div>
-                <div className="col-sm-6 col-md-2 mg-auto">
-                  <h2>Days</h2>
-                </div>
-                <div className="col-sm-6 col-md-3 mg-auto">
+                <div className="col-sm-4">
                   <div className="form-group">
+                    <h3>Days</h3>
                     <input
                       type="number"
+                      className="generate-input"
                       placeholder="Ex 1, 2, 10"
                       onChange={handleDaysChange}
                       value={numberOfDays}
                     />
                   </div>
                 </div>
-                <div className="col-sm-6 col-md-3 mg-auto">
+                <div className="col-sm-4">
                   <div className="form-group">
-                    <input
-                      type="number"
-                      placeholder="Ex 1, 2, 10"
-                      onChange={handleDaysChange}
-                      value={numberOfDays}
-                    />
+                    <h3>Visit Type</h3>
+                    {options && (
+                      <Select
+                        styles={customStyles}
+                        options={visitType}
+                        onChange={handleTypeChange}
+                        value={selectedType}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="col-sm-6 col-md-2 mg-auto">
-                  {isMainPage ? (
-                    <button className="round-btn">Generate</button>
-                  ) : (
-                    <Link
-                      to={`${AI_TOURS_URL}?id=${
-                        selectedOption.value ? selectedOption.value : ""
-                      }&country=${
-                        selectedOption.label ? selectedOption.label : ""
-                      }&days=${numberOfDays}`}
-                      className="round-btn"
-                    >
-                      Generate
-                    </Link>
-                  )}
+                  <Link
+                    to={`${AI_TOURS_URL}?id=${
+                      selectedOption.value ? selectedOption.value : ""
+                    }&country=${
+                      selectedOption.label ? selectedOption.label : ""
+                    }&type=${
+                      selectedType.value ? selectedType.value : ""
+                    }&days=${numberOfDays}`}
+                    className="round-btn"
+                  >
+                    Generate
+                  </Link>
                 </div>
               </div>
             </div>

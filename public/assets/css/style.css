@@ -7097,3 +7097,9 @@ ul.styled-list li:before {
   background-color: transparent;
       border: none;
 }
+.generate-input{
+  border-radius: 36px;
+  font-size: 14px;
+  padding: 30px 15px;
+  text-align: center;
+}

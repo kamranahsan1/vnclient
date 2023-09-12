@@ -21,6 +21,13 @@ const UaeVisa = () => {
     <Fragment>
       <MetaData title={"Uae Visa"} />
       <main id="content" className="site-main">
+        {showModal && (
+          <ModalBooking
+            message={ModalItem}
+            show={showModal}
+            handleClose={handleCloseModal}
+          />
+        )}
         <section className="inner-page-wrap">
           <Banner
             bg="/assets/images/img7.jpg"
