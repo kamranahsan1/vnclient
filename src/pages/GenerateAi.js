@@ -17,12 +17,10 @@ const GenerateAi = () => {
   const [selectedTour, setSelectedTour] = useState({});
   const visitType = [
     { value: "general", label: "General" },
-    { value: "site-seen", label: "Site Seen" },
-    { value: "event-visit", label: "Event Visit" },
+    { value: "event-visit", label: "Events" },
   ];
   const id = queryParams.has("id") ? queryParams.get("id") : "";
   const country = queryParams.has("country") ? queryParams.get("country") : "";
-  const type = queryParams.has("type") ? queryParams.get("type") : "";
   const days = queryParams.has("days") ? queryParams.get("days") : 7;
 
   const avaOption =
@@ -44,16 +42,10 @@ const GenerateAi = () => {
   }));
 
   let vType = queryParams.has("type")
-    ? visitType.find((item) => item.value === queryParams.has("type"))
+    ? visitType.find((item) => item.value === queryParams.get("type"))
     : visitType[0];
-  if (!vType) {
-    vType = visitType[0];
-  }
-  console.log("vType", vType);
 
   const [selectedType, setSelectedType] = useState(vType);
-
-  console.log("selectedType1", selectedType);
 
   const customStyles = {
     control: (provided) => ({
@@ -67,9 +59,12 @@ const GenerateAi = () => {
   useEffect(() => {
     const fetchCons = async () => {
       dispatch(getCountries());
+      if (id !== "") {
+        handleGenerateClick();
+      }
     };
     fetchCons();
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const { loading, status, tours, toursCount } = useSelector(
     (state) => state.generatedTour
@@ -102,8 +97,7 @@ const GenerateAi = () => {
       newParams.append("id", selectedOption.value);
       newParams.append("country", selectedOption.label);
 
-      console.log("selectedType2", selectedType);
-      if (selectedType && selectedType.value != "general") {
+      if (selectedType) {
         p.type = selectedType.value;
         newParams.append("type", selectedType.value);
       }
@@ -133,12 +127,10 @@ const GenerateAi = () => {
       dispatch(getTour(p));
     }
   };
+
   function isCompleteURL(str) {
     return str.startsWith("http://") || str.startsWith("https://");
   }
-  useEffect(() => {
-    handleGenerateClick();
-  }, []);
   const handleTypeChange = (selected) => {
     setSelectedType(selected);
   };
@@ -242,7 +234,9 @@ const GenerateAi = () => {
                       <div className="single-package-head d-flex align-items-center">
                         <div className="package-title">
                           <h3>
-                            Day {tour.Day} - {tour.name}
+                            {tour.type === "general"
+                              ? `Day ${tour.Day} - ${tour.name}`
+                              : `Event - ${tour.name}`}
                           </h3>
                         </div>
                       </div>
