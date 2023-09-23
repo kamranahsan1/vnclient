@@ -15,7 +15,7 @@ function Home() {
   const [showModal, setShowModal] = useState(false);
   const [ModalQuery, setModalQuery] = useState("");
   const { packages, error } = useSelector((state) => state.packages);
-
+  console.log(packages);
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -63,7 +63,7 @@ function Home() {
                   <div className="col-lg-8 offset-lg-2">
                     <h2 className="banner-title">JOURNEY TO EXPLORE WORLD</h2>
                     <p>
-                      With{" "}
+                      With
                       <span
                         style={{
                           padding: "10px 0",
@@ -72,7 +72,7 @@ function Home() {
                         }}
                       >
                         New Vision
-                      </span>{" "}
+                      </span>
                       Travel and Tourism
                     </p>
                     <div className="banner-btn">
@@ -105,7 +105,7 @@ function Home() {
                 {packages &&
                   packages.map((tour, index) => (
                     <div className="col-lg-4 col-md-6" key={index}>
-                      <Link to={`/package/International-packages`}>
+                      <Link to={`/package/international-packages`}>
                         <article
                           className="destination-item"
                           style={{

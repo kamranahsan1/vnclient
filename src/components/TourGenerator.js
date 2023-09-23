@@ -9,7 +9,7 @@ const TourGenerator = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const visitType = [
-    { value: "general", label: "General" },
+    { value: "attraction", label: "Attraction" },
     { value: "event-visit", label: "Events" },
   ];
   const id = queryParams.has("id") ? queryParams.get("id") : "";

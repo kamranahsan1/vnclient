@@ -16,7 +16,7 @@ const GenerateAi = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedTour, setSelectedTour] = useState({});
   const visitType = [
-    { value: "general", label: "General" },
+    { value: "attraction", label: "Attraction" },
     { value: "event-visit", label: "Events" },
   ];
   const id = queryParams.has("id") ? queryParams.get("id") : "";
@@ -234,7 +234,7 @@ const GenerateAi = () => {
                       <div className="single-package-head d-flex align-items-center">
                         <div className="package-title">
                           <h3>
-                            {tour.type === "general"
+                            {tour.type === "attraction"
                               ? `Day ${tour.Day} - ${tour.name}`
                               : `Event - ${tour.name}`}
                           </h3>
