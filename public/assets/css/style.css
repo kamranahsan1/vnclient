@@ -1759,7 +1759,7 @@ input[type=submit]:focus {
 .top-header {
   background-color: #3066af;
   border-bottom: 1px solid rgba(167, 167, 167, 0.25);
-  padding: 10px 0;
+  padding: 20px 0;
 }
 .top-header .top-header-inner {
   display: grid;
@@ -1943,7 +1943,7 @@ input[type=submit]:focus {
 }
 @media screen and (max-width: 575px) {
   .site-logo img {
-    max-width: 50px!important;
+    max-width: 200px!important;
   }
 }
 
@@ -6825,7 +6825,8 @@ input[type=submit]:focus {
   background-color: #3066af;
 }
 .appended-logo img{
-  max-width: 65px;
+  max-width: 240px;
+  width: 100%;
 }
 footer .social-icon a{
   color: white;
