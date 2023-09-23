@@ -165,7 +165,7 @@ export const saveContact = (formData) => async (dispatch) => {
 export const saveSubscriber = (formData) => async (dispatch) => {
   try {
     dispatch({ type: SAVE_SUBSCRIBER_REQUEST });
-    const response = await axios.post(`${API_LINK}/subscribe`, formData);
+    const response = await axios.post(`${API_LINK}/postsubscriber`, formData);
     dispatch({
       type: SAVE_SUBSCRIBER_SUCCESS,
       payload: response.data,
