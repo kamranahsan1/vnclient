@@ -54,7 +54,7 @@ const Footer = () => {
                       <Link to={HOME_URL}>
                         <img
                           src="/assets/images/logo-sign.png"
-                          width="65"
+                          width="200"
                           alt=""
                         />
                       </Link>

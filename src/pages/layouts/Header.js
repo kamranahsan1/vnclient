@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getCategories } from "../../action/packagesActions";
 import {
@@ -24,9 +24,7 @@ const Header = () => {
   const [showPackagesSubMenu, setShowPackagesSubMenu] = useState(false);
   const [showVisasSubMenu, setShowVisasSubMenu] = useState(false);
   const [showServicesSubMenu, setShowServicesSubMenu] = useState(false);
-  const { categories, loading, error } = useSelector(
-    (state) => state.categories
-  );
+  const { categories, error } = useSelector((state) => state.categories);
   const categorySlugs = categories.map(
     (category) => `/package/${category.slug}`
   );
@@ -52,6 +50,7 @@ const Header = () => {
       dispatch(clearErrors());
     }
     dispatch(getCategories());
+
     const handleScroll = () => {
       const headerHeight = document.querySelector(".top-header").offsetHeight;
       const bottomHeaderHeight =
@@ -71,6 +70,10 @@ const Header = () => {
     };
   }, [dispatch, error]);
 
+  useEffect(() => {
+    setCurrentPage(lct.pathname);
+  }, [lct.pathname]);
+
   const menuToggle = () => {
     setMenuToggle(!isMenuToggle);
   };
@@ -86,9 +89,6 @@ const Header = () => {
     setShowServicesSubMenu(!showServicesSubMenu);
   };
 
-  const openSearch = () => {
-    setIsSearchIn(true);
-  };
   const closeSearch = () => {
     setIsSearchIn(false);
   };
@@ -164,9 +164,9 @@ const Header = () => {
               <form className="search-form" role="search" method="get">
                 <input type="text" name="s" placeholder="Enter your text..." />
               </form>
-              <a href="#" className="search-close">
+              <Link className="search-close">
                 <i className="fas fa-times" onClick={closeSearch}></i>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -193,19 +193,10 @@ const Header = () => {
                 </a>
               </div>
               <div className="header-icons text-right">
-                {/*                <div
-                  className="header-search-icon d-inline-block"
-                  onClick={openSearch}
-                >
-                  <a href="#">
-                    <i aria-hidden="true" className="fas fa-search"></i>
-                  </a>
-                </div>
-               */}
                 <div className="offcanvas-menu d-inline-block">
-                  <a href="#" onClick={canvasOpen}>
+                  <Link onClick={canvasOpen}>
                     <i aria-hidden="true" className="icon icon-burger-menu"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -516,17 +507,12 @@ const Header = () => {
                     className="slicknav_parent-link slicknav_row"
                     onClick={toggleServicesSubMenu}
                   >
-                    <a href="javascript:void(0);">Our Services</a>
-                    <a
-                      href="#"
-                      role="menuitem"
-                      aria-haspopup="true"
-                      className="slicknav_item"
-                    >
+                    <Link>Our Services</Link>
+                    <Link className="slicknav_item">
                       <span className="slicknav_arrow">
                         <i className="fas fa-plus"></i>
                       </span>
-                    </a>
+                    </Link>
                   </span>
                   <ul
                     role="menu"

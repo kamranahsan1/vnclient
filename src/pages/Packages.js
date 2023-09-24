@@ -12,21 +12,25 @@ const Packages = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [ModalName, setModalName] = useState(1);
+  const [ModalName, setModalName] = useState("");
   const { categories } = useSelector((state) => state.categories);
   const { packages, error } = useSelector((state) => state.packages);
   const category =
     categories.find((cat) => cat.slug.includes(params.category)) || {};
   const [showModal, setShowModal] = useState(false);
 
-  const handleOpenModal = (name) => {
-    setModalName(name);
-    setShowModal(true);
+  // Move the setShowModal line inside handleOpenModal to open the modal
+  const handleOpenModal = async (name) => {
+    await setModalName(name);
+    console.log("name:", name);
+    console.log("ModalName after setModalName:", ModalName);
+    setShowModal(true); // Open the modal here
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
   useEffect(() => {
     if (error) {
       alert(error);
@@ -42,11 +46,13 @@ const Packages = () => {
     return (
       <Fragment>
         <MetaData title={category.name ? category.name : ""} />
-        <ModalBooking
-          message={`Query Related for ${ModalName}`}
-          show={showModal}
-          handleClose={handleCloseModal}
-        />
+        {showModal && (
+          <ModalBooking
+            message={`Query Related for ${ModalName}`}
+            show={showModal}
+            handleClose={handleCloseModal}
+          />
+        )}
         <main id="content" className="site-main">
           <section className="package-inner-page">
             <Banner
@@ -71,6 +77,7 @@ const Packages = () => {
       </Fragment>
     );
   }
+
   if (category.viewType === "quick" && packages.length > 0) {
     return (
       <Fragment>
@@ -99,6 +106,7 @@ const Packages = () => {
       </Fragment>
     );
   }
+
   return (
     <main id="content" className="site-main">
       <section className="package-inner-page bg-light-grey">
