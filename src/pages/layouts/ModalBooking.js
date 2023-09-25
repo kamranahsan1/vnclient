@@ -75,7 +75,6 @@ const ModalBooking = ({ show, handleClose, message }) => {
 
   useEffect(() => {
     if (!show) {
-      console.log(initialFormData);
       setFormData(initialFormData);
       setErrors({});
     }

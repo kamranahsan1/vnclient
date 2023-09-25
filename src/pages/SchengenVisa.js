@@ -60,7 +60,7 @@ const SchengenVisa = () => {
                                   >
                                     <div className="card-body">
                                       <h2>#{cate.name}</h2>
-                                      <p>#{cate.description}</p>
+                                      <p>{cate.description}</p>
                                     </div>
                                   </div>
                                 </div>
@@ -106,7 +106,7 @@ const SchengenVisa = () => {
                                   >
                                     <div className="card-body">
                                       <h2>#{cate.name}</h2>
-                                      <p>#{cate.description}</p>
+                                      <p>{cate.description}</p>
                                     </div>
                                   </div>
                                 </div>

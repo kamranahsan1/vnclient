@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPackages, clearErrors } from "../action/packagesActions";
@@ -9,8 +9,11 @@ import DubaiDestination from "../components/DubaiDestination";
 import ModalBooking from "../pages/layouts/ModalBooking";
 import Pagination from "react-js-pagination";
 import SectionLoader from "../components/loader";
+import { useNavigate } from "react-router-dom";
+import { ERROR_404 } from "../constants/commonConstants";
 
 const Packages = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,10 +21,15 @@ const Packages = () => {
   const { categories } = useSelector((state) => state.categories);
   const { packages, error, resultPerPage, packagesCount, loading } =
     useSelector((state) => state.packages);
+
   const category =
-    categories.find((cat) => cat.slug.includes(params.category)) || {};
+    categories.find((cat) => cat.slug.includes(params.category)) || false;
+
+  if (!category) {
+    navigate(ERROR_404);
+  }
+
   const [showModal, setShowModal] = useState(false);
-  // Move the setShowModal line inside handleOpenModal to open the modal
   const handleOpenModal = async (name) => {
     await setModalName(name);
     setShowModal(true); // Open the modal here
