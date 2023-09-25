@@ -7,7 +7,7 @@ const UaePackage = (props) => {
         <div className="single-packge-wrap">
           <div className="single-package-head d-flex align-items-center">
             <div className="package-title">
-              <h2>{tour.name}</h2>
+              <h2 style={{ fontSize: "30px" }}>{tour.name}</h2>
             </div>
           </div>
           <div className="package-meta"></div>
@@ -21,7 +21,7 @@ const UaePackage = (props) => {
                 <p>{tour.description}</p>
               </article>
             )}
-            {tour.inclusionsList.length > 0 && (
+            {tour.inclusionsList && tour.inclusionsList.length > 0 && (
               <article className="package-include bg-light-grey">
                 <h3>INCLUDE :</h3>
                 <ul>
@@ -39,38 +39,39 @@ const UaePackage = (props) => {
       </div>
       <div className="col-lg-4">
         <div className="sidebar">
-          {tour.price.length > 0 && (
-            <div className="booking-form-wrap">
-              <div className="booking-form-inner primary-bg">
-                <h3 className="pd-no-bottom mb-0">Pricing</h3>
-                <div className="price-box">
-                  {tour.price.map((price, index) => (
-                    <div className="price-item" key={index}>
-                      {price.description !== "" && (
-                        <span className="price-label">
-                          {price.description}:
+          <div className="booking-form-wrap">
+            <div className="booking-form-inner primary-bg text-center">
+              {tour.price && tour.price.length > 0 && (
+                <>
+                  <h3 className="pd-no-bottom mb-0">Pricing</h3>
+                  <div className="price-box">
+                    {tour.price.map((price, index) => (
+                      <div className="price-item" key={index}>
+                        {price.description !== "" && (
+                          <span className="price-label">
+                            {price.description}:
+                          </span>
+                        )}
+                        <span className="price">
+                          {price.currency.toUpperCase()}{" "}
+                          {price.amount.$numberDecimal}
                         </span>
-                      )}
-                      <span className="price">
-                        {price.currency.toUpperCase()}{" "}
-                        {price.amount.$numberDecimal}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <p>
-                  <button
-                    onClick={() => handleOpenModal(tour.name)}
-                    type="button"
-                    className="outline-btn outline-btn-white theme-color"
-                  >
-                    Book Now
-                  </button>
-                </p>
-              </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+              <button
+                style={{ margin: "auto" }}
+                onClick={() => handleOpenModal(tour.name)}
+                type="button"
+                className="outline-btn outline-btn-white theme-color"
+              >
+                Book Now
+              </button>
             </div>
-          )}
-          {tour.attractions.length > 0 && (
+          </div>
+          {tour.attractions && tour.attractions.length > 0 && (
             <div className="booking-form-wrap">
               <div className="booking-form-inner primary-bg">
                 <h3>ATTRACTIONS</h3>

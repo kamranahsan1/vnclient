@@ -1,7 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "./layouts/MetaData";
-import { CONTACT_URL, SCHENGEN_VISA_URL } from "../constants/commonConstants";
+import {
+  CONTACT_URL,
+  SCHENGEN_VISA_URL,
+  TOURS_URL,
+} from "../constants/commonConstants";
 import { Link } from "react-router-dom";
 import ModalBooking from "../pages/layouts/ModalBooking";
 import {
@@ -10,12 +14,12 @@ import {
   getViewCategory,
 } from "../action/packagesActions";
 import TourGenerator from "../components/TourGenerator";
+
 function Home() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [ModalQuery, setModalQuery] = useState("");
   const { packages, error } = useSelector((state) => state.packages);
-  console.log(packages);
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -71,8 +75,9 @@ function Home() {
                           fontSize: 20,
                         }}
                       >
+                        {" "}
                         New Vision
-                      </span>
+                      </span>{" "}
                       Travel and Tourism
                     </p>
                     <div className="banner-btn">
@@ -105,7 +110,7 @@ function Home() {
                 {packages &&
                   packages.map((tour, index) => (
                     <div className="col-lg-4 col-md-6" key={index}>
-                      <Link to={`/package/international-packages`}>
+                      <Link to={`/tour/${tour.slug}`}>
                         <article
                           className="destination-item"
                           style={{

@@ -25,10 +25,12 @@ const DubaiDestination = (props) => {
         <div className="offer-content">
           <h3>{tour.name}</h3>
           <p>{tour.desc}</p>
-          <div className="price-list">
-            Price:
-            <ins>AED {tour.price[0].amount.$numberDecimal}</ins>
-          </div>
+          {tour.price && tour.price.length > 0 && (
+            <div className="price-list">
+              Price:
+              <ins>AED {tour.price[0].amount.$numberDecimal}</ins>
+            </div>
+          )}
           <Link onClick={handleOpenModal} className="round-btn">
             Book Now
           </Link>

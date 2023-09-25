@@ -22,8 +22,10 @@ import {
   PICKUP_SERVICES_URL,
   CONTACT_URL,
   AI_TOURS_URL,
+  TOURS_URL,
 } from "./constants/commonConstants";
 import ScrollToTop from "./utils/ScrollToTop";
+import SinglePackage from "./pages/SinglePackage";
 
 function App() {
   return (
@@ -57,14 +59,13 @@ function App() {
             }
           />
           <Route
-            path={AI_TOURS_URL}
+            path={TOURS_URL}
             element={
               <Layout>
-                <GenerateAi />
+                <SinglePackage />
               </Layout>
             }
           />
-          {/*
           <Route
             path={AI_TOURS_URL}
             element={
@@ -72,35 +73,7 @@ function App() {
                 <GenerateAi />
               </Layout>
             }
-          >
-            <Route
-              path=":id?"
-              element={
-                <Layout>
-                  <GenerateAi />
-                </Layout>
-              }
-            >
-              <Route
-                path=":country?"
-                element={
-                  <Layout>
-                    <GenerateAi />
-                  </Layout>
-                }
-              >
-                <Route
-                  path=":days?"
-                  element={
-                    <Layout>
-                      <GenerateAi />
-                    </Layout>
-                  }
-                ></Route>
-              </Route>
-            </Route>
-          </Route>
-          */}
+          />
           <Route
             path={UAE_VISA_URL}
             element={

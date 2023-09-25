@@ -1,8 +1,9 @@
-export const API_LINK = `https://vnbackend-b4d0409e1de8.herokuapp.com/api`;
-export const API_IMAGE = `https://vnbackend-b4d0409e1de8.herokuapp.com/uploads`;
+// export const API_LINK = `https://vnbackend-b4d0409e1de8.herokuapp.com/api`;
+// export const API_IMAGE = `https://vnbackend-b4d0409e1de8.herokuapp.com/uploads`;
 
-//export const API_LINK = `http://127.0.0.1:5000/api`;
-//export const API_IMAGE = `http://127.0.0.1:5000/uploads`;
+export const API_LINK = `http://127.0.0.1:5000/api`;
+export const API_IMAGE = `http://127.0.0.1:5000/uploads`;
+
 export const APP_NAME = `NewVision Travel & Tours`;
 
 export const ALL_PACKAGE_REQUEST = "ALL_PACKAGE_REQUEST";
@@ -41,6 +42,7 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const HOME_URL = "/";
 export const ABOUT_US_URL = "/about";
 export const PACKAGES_TOURS_URL = "/package/:category";
+export const TOURS_URL = "/tour/:slug";
 export const UAE_TOURS_URL = "/uae-tours";
 export const AI_TOURS_URL = "/generate-tour-by-ai";
 export const DUBAI_TOURS_URL = "/dubai-tours";
