@@ -10,6 +10,7 @@ import {
   PickUpServices,
   Packages,
   GenerateAi,
+  NotFound,
 } from "./pages";
 
 import {
@@ -118,6 +119,14 @@ function App() {
               </Layout>
             }
             exact
+          />
+          <Route
+            path="*"
+            element={
+              <Layout>
+                <NotFound />
+              </Layout>
+            }
           />
         </Routes>
       </ScrollToTop>

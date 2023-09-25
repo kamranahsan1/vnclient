@@ -9,3 +9,4 @@ export { default as PickUpServices } from "./PickUpServices";
 export { default as Packages } from "./Packages";
 export { default as GenerateAi } from "./GenerateAi";
 export { default as Error } from "./Error";
+export { default as NotFound } from "./NotFound";

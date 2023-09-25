@@ -53,3 +53,4 @@ export const AIR_TIKETS_URL = "/air-tickets";
 export const TRAVEL_INSURANCE_URL = "/travel-insurance";
 export const PICKUP_SERVICES_URL = "/pickup-services";
 export const CONTACT_URL = "/contact";
+export const ERROR_404 = "/404";
