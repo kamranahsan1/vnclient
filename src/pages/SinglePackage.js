@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 const SinglePackage = () => {
-  const dispatch = useDispatch();
   const params = useParams();
   const slug = params.slug;
   const [ModalName, setModalName] = useState("");
@@ -20,7 +19,7 @@ const SinglePackage = () => {
     const loadTour = async () => {
       try {
         const response = await axios.get(`${API_LINK}/getTourBySlug/${slug}`);
-        setTour(response.data);
+        setTour(response.data.data);
       } catch (error) {
         console.error("Error fetching tour:", error);
       }
@@ -28,6 +27,8 @@ const SinglePackage = () => {
 
     loadTour();
   }, [slug]);
+
+  console.log(tour);
 
   const handleOpenModal = async (name) => {
     await setModalName(name);

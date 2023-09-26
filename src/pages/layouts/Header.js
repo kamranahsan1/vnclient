@@ -1,7 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, getCategories } from "../../action/packagesActions";
+import {
+  clearErrors,
+  getCategories,
+  getViewCategory,
+} from "../../action/packagesActions";
 import {
   HOME_URL,
   ABOUT_US_URL,
@@ -25,6 +29,7 @@ const Header = () => {
   const [showVisasSubMenu, setShowVisasSubMenu] = useState(false);
   const [showServicesSubMenu, setShowServicesSubMenu] = useState(false);
   const { categories, error } = useSelector((state) => state.categories);
+  const { viewcategory } = useSelector((state) => state.viewcategory);
   const categorySlugs = categories.map(
     (category) => `/package/${category.slug}`
   );
@@ -50,6 +55,7 @@ const Header = () => {
       dispatch(clearErrors());
     }
     dispatch(getCategories());
+    dispatch(getViewCategory());
 
     const handleScroll = () => {
       const headerHeight = document.querySelector(".top-header").offsetHeight;
@@ -285,26 +291,22 @@ const Header = () => {
                     >
                       <Link>Visas</Link>
                       <ul>
-                        <li>
-                          <Link
-                            to={UAE_VISA_URL}
-                            onClick={() => {
-                              navigationActive(UAE_VISA_URL);
-                            }}
-                          >
-                            Uae Visa
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to={SCHENGEN_VISA_URL}
-                            onClick={() => {
-                              navigationActive(SCHENGEN_VISA_URL);
-                            }}
-                          >
-                            Schengen Visa
-                          </Link>
-                        </li>
+                        {viewcategory &&
+                          viewcategory.map((category, index) => (
+                            <li
+                              key={index}
+                              onClick={() => {
+                                navigationActive(`/visa/${category.slug}`);
+                              }}
+                            >
+                              <Link
+                                to={`/visa/${category.slug}`}
+                                onClick={() => setShowPackagesSubMenu(false)}
+                              >
+                                {category.name}
+                              </Link>
+                            </li>
+                          ))}
                       </ul>
                     </li>
                     <li

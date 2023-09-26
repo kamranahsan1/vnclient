@@ -24,9 +24,11 @@ import {
   CONTACT_URL,
   AI_TOURS_URL,
   TOURS_URL,
+  VISAS_URL,
 } from "./constants/commonConstants";
 import ScrollToTop from "./utils/ScrollToTop";
 import SinglePackage from "./pages/SinglePackage";
+import Visas from "./pages/Visas";
 
 function App() {
   return (
@@ -56,6 +58,14 @@ function App() {
             element={
               <Layout>
                 <Packages />
+              </Layout>
+            }
+          />
+          <Route
+            path={VISAS_URL}
+            element={
+              <Layout>
+                <Visas />
               </Layout>
             }
           />

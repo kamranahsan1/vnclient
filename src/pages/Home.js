@@ -31,7 +31,7 @@ function Home() {
   const { viewcategory } = useSelector((state) => state.viewcategory);
 
   useEffect(() => {
-    dispatch(getViewCategory());
+    dispatch(getViewCategory(6));
   }, [dispatch]);
 
   const handleOpenModal = (name) => {

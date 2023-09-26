@@ -130,10 +130,13 @@ export const getCountries = () => async (dispatch) => {
   }
 };
 
-export const getViewCategory = () => async (dispatch) => {
+export const getViewCategory = (resultPerPage) => async (dispatch) => {
   try {
+    resultPerPage = resultPerPage || 100;
     dispatch({ type: ALL_VISA_CATEGORY_REQUEST });
-    const { data } = await axios.get(`${API_LINK}/viewcategories`);
+    const { data } = await axios.get(
+      `${API_LINK}/viewcategories?resultPerPage=${resultPerPage}`
+    );
     dispatch({
       type: ALL_VISA_CATEGORY_SUCCESS,
       payload: data,

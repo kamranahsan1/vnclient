@@ -374,7 +374,7 @@ h1 {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 800;
 }
 
@@ -7145,4 +7145,7 @@ ul.styled-list li:before {
 /* Content styles */
 .content {
   display: none;
+}
+.offer-package-wrap .reverse:nth-child(odd){
+  flex-direction:row-reverse;
 }
