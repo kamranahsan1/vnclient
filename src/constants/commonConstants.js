@@ -1,8 +1,8 @@
-// export const API_LINK = `https://vnbackend-b4d0409e1de8.herokuapp.com/api`;
-// export const API_IMAGE = `https://vnbackend-b4d0409e1de8.herokuapp.com/uploads`;
+export const API_LINK = `https://vnbackend-b4d0409e1de8.herokuapp.com/api`;
+export const API_IMAGE = `https://vnbackend-b4d0409e1de8.herokuapp.com/uploads`;
 
-export const API_LINK = `http://127.0.0.1:5000/api`;
-export const API_IMAGE = `http://127.0.0.1:5000/uploads`;
+// export const API_LINK = `http://127.0.0.1:5000/api`;
+// export const API_IMAGE = `http://127.0.0.1:5000/uploads`;
 
 export const APP_NAME = `NewVision Travel & Tours`;
 
