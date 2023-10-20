@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { HOME_URL } from "../../constants/commonConstants";
+import { FB_LINK, HOME_URL, INSTA_LINK } from "../../constants/commonConstants";
 import $ from "jquery";
 import { useDispatch } from "react-redux";
 import { saveSubscriber } from "../../action/packagesActions";
@@ -144,7 +144,7 @@ const Footer = () => {
                   <div className="social-icon">
                     <ul>
                       <li>
-                        <Link to="https://www.facebook.com/" target="_blank">
+                        <Link to={FB_LINK} target="_blank">
                           <i
                             className="fab fa-facebook-f"
                             aria-hidden="true"
@@ -152,7 +152,7 @@ const Footer = () => {
                         </Link>
                       </li>
                       <li>
-                        <Link to="https://www.facebook.com/" target="_blank">
+                        <Link to={INSTA_LINK} target="_blank">
                           <i
                             className="fab fa-instagram"
                             aria-hidden="true"
@@ -161,21 +161,6 @@ const Footer = () => {
                       </li>
                     </ul>
                   </div>
-                  {/* 
-                  <div className="footer-menu">
-                    <ul>
-                      <li>
-                        <a href="policy.html">Privacy Policy</a>
-                      </li>
-                      <li>
-                        <a href="policy.html">Term &amp; Condition</a>
-                      </li>
-                      <li>
-                        <a href="faq.html">FAQ</a>
-                      </li>
-                    </ul>
-                  </div>
-                  */}
                 </div>
               </div>
             </div>

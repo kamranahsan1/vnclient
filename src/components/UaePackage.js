@@ -1,3 +1,5 @@
+import { removePrefixFromURL } from "../constants/commonConstants";
+
 const UaePackage = (props) => {
   const { tour, handleOpenModal } = props;
 
@@ -12,7 +14,11 @@ const UaePackage = (props) => {
           </div>
           <div className="package-meta"></div>
           <figure className="single-package-image">
-            <img src={tour.mainImage} alt="" className="full-width" />
+            <img
+              src={removePrefixFromURL(tour.mainImage)}
+              alt=""
+              className="full-width"
+            />
           </figure>
           <div className="package-content-detail">
             {tour.description !== "" && (
@@ -25,12 +31,15 @@ const UaePackage = (props) => {
               <article className="package-include bg-light-grey">
                 <h3>INCLUDE :</h3>
                 <ul>
-                  {tour.inclusionsList.map((inclusion, index) => (
-                    <li className="full-width" key={index}>
-                      <i className="fas fa-check"></i>
-                      {inclusion}
-                    </li>
-                  ))}
+                  {tour.inclusionsList.map(
+                    (inclusion, index) =>
+                      inclusion !== null && (
+                        <li className="full-width" key={index}>
+                          <i className="fas fa-check"></i>
+                          {inclusion}
+                        </li>
+                      )
+                  )}
                 </ul>
               </article>
             )}

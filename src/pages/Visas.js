@@ -7,7 +7,11 @@ import Banner from "./layouts/Banner";
 import ModalBooking from "./layouts/ModalBooking";
 import SectionLoader from "../components/loader";
 import { useNavigate } from "react-router-dom";
-import { API_LINK, ERROR_404 } from "../constants/commonConstants";
+import {
+  API_LINK,
+  ERROR_404,
+  removePrefixFromURL,
+} from "../constants/commonConstants";
 import axios from "axios";
 
 const Visas = () => {
@@ -55,7 +59,10 @@ const Visas = () => {
       <main id="content" className="site-main">
         <section className="package-inner-page">
           <Banner
-            bg={category.mainImage || "/assets/images/img7.jpg"}
+            bg={
+              removePrefixFromURL(category.mainImage) ||
+              "/assets/images/img7.jpg"
+            }
             title={category.name}
             desc={category.description}
           />
@@ -110,7 +117,10 @@ const Visas = () => {
                         </div>
                         <div className="col-md-7">
                           <figure className="career-detail-image">
-                            <img src={visa.mainImage} alt="" />
+                            <img
+                              src={removePrefixFromURL(visa.mainImage)}
+                              alt=""
+                            />
                           </figure>
                         </div>
                       </div>

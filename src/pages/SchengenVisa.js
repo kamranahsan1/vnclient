@@ -4,6 +4,7 @@ import MetaData from "./layouts/MetaData";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getViewCategory, clearErrors } from "../action/packagesActions";
+import { removePrefixFromURL } from "../constants/commonConstants";
 
 const SchengenVisa = () => {
   const params = useParams();
@@ -71,7 +72,10 @@ const SchengenVisa = () => {
                       </div>
                       <div className="col-md-7">
                         <figure className="career-detail-image">
-                          <img src={cate.mainImage} alt="" />
+                          <img
+                            src={removePrefixFromURL(cate.mainImage)}
+                            alt=""
+                          />
                         </figure>
                       </div>
                     </div>
@@ -79,7 +83,10 @@ const SchengenVisa = () => {
                     <div className="row padding-down" key={index}>
                       <div className="col-md-7">
                         <figure className="career-detail-image">
-                          <img src={cate.mainImage} alt="" />
+                          <img
+                            src={removePrefixFromURL(cate.mainImage)}
+                            alt=""
+                          />
                         </figure>
                       </div>
                       <div className="col-md-5">

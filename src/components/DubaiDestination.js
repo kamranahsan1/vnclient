@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ModalBooking from "../pages/layouts/ModalBooking";
+import { removePrefixFromURL } from "../constants/commonConstants";
 
 const DubaiDestination = (props) => {
   const tour = props.tour;
@@ -19,7 +20,7 @@ const DubaiDestination = (props) => {
       <article
         className="offer-item"
         style={{
-          backgroundImage: `url(${tour.mainImage})`,
+          backgroundImage: `url(${removePrefixFromURL(tour.mainImage)})`,
         }}
       >
         <div className="offer-content">

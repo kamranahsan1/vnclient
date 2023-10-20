@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTour, getCountries, clearErrors } from "../action/packagesActions";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { API_IMAGE } from "../constants/commonConstants";
+import { API_IMAGE, removePrefixFromURL } from "../constants/commonConstants";
 import ModalBooking from "../pages/layouts/ModalBooking";
 
 const GenerateAi = () => {
@@ -245,7 +245,7 @@ const GenerateAi = () => {
                           <img
                             src={
                               isCompleteURL(tour.mainImage)
-                                ? tour.mainImage
+                                ? removePrefixFromURL(tour.mainImage)
                                 : `${API_IMAGE}/${tour.mainImage}`
                             }
                             alt=""

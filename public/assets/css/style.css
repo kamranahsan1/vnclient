@@ -1746,7 +1746,7 @@ input[type=submit]:focus {
 .site-header {
   left: 0;
   right: 0;
-  position: absolute;
+  /*position: absolute;*/
   width: 100%;
   top: 0;
   z-index: 99;
@@ -1851,7 +1851,7 @@ input[type=submit]:focus {
   width: 35px;
 }
 .site-header:not(.fixed-header) .header-social a {
-  color: #fafafa;
+  /*color: #fafafa;*/
 }
 .header-social a:hover, .header-social a:focus {
   border-color: #174B90;
@@ -1990,7 +1990,7 @@ input[type=submit]:focus {
   display: none;
 }
 .navigation-container ul > li > a {
-  color: #ffffff;
+  color: #404040;
   display: inline-block;
   font-size: 16px;
   padding: 20px 0;
@@ -2485,7 +2485,7 @@ input[type=submit]:focus {
   margin-right: 10px;
 }
 .mobile-menu-container .slicknav_menu .slicknav_menutxt {
-  color: #FFF;
+  color: #404040;
   text-shadow: none;
   font-weight: normal;
   font-size: 16px;
@@ -2634,7 +2634,7 @@ input[type=submit]:focus {
   display: none;
 }
 .slicknav_btn .slicknav_icon span {
-  background-color: #FFF;
+  background-color: #404040;
   box-shadow: none;
   display: none;
   position: absolute;
@@ -2653,7 +2653,7 @@ input[type=submit]:focus {
   display: block;
 }
 .slicknav_btn .slicknav_icon span:first-child:before, .slicknav_btn .slicknav_icon span:first-child:after {
-  background-color: #FFF;
+  background-color: #404040;
   content: "";
   position: absolute;
   width: 100%;
@@ -2721,7 +2721,7 @@ input[type=submit]:focus {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  min-height: 800px;
+  min-height: 520px;
   position: relative;
   z-index: 1;
 }

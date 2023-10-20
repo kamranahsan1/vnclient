@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import $ from "jquery";
 
 const Banner = ({ bg, title, desc, padding }) => {
-  useEffect(() => {
+  /*useEffect(() => {
     const headerHeight = $("#masthead").outerHeight();
     $(".home-banner").css("padding-top", headerHeight);
     $(".inner-baner-container").css("padding-top", headerHeight);
-  });
+  });*/
   return (
     <div className={`inner-banner-wrap ${padding ? padding : ""}`}>
       <div

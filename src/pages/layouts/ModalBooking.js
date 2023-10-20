@@ -54,13 +54,26 @@ const ModalBooking = ({ show, handleClose, message }) => {
     }
 
     try {
-      dispatch(saveContact(formData));
+      const formDataToSend = new FormData();
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("phone", formData.phone);
+      formDataToSend.append("message", formData.message);
+
+      for (let i = 0; i < formData.attachments.length; i++) {
+        formDataToSend.append("attachments", formData.attachments[i]);
+      }
+
+      dispatch(saveContact(formDataToSend));
+
+      //dispatch(saveContact(formData));
       setFormData({
         name: "",
         email: "",
         phone: "",
         reason: "Query",
         message: "",
+        attachments: [],
       });
       setDialogOpen(true);
       setErrors({});
@@ -71,6 +84,11 @@ const ModalBooking = ({ show, handleClose, message }) => {
     } catch (error) {
       console.error("Error submitting form:", error);
     }
+  };
+
+  const handleFileChange = (e) => {
+    const files = e.target.files;
+    setFormData({ ...formData, attachments: files });
   };
 
   useEffect(() => {
@@ -140,6 +158,18 @@ const ModalBooking = ({ show, handleClose, message }) => {
                   onChange={handleInputChange}
                   placeholder="Your Message*"
                 ></textarea>
+              </p>
+              <p>
+                <label>Attachments</label>
+                <input
+                  type="file"
+                  name="attachments"
+                  multiple
+                  onChange={handleFileChange}
+                  style={{
+                    color: "white",
+                  }}
+                />
               </p>
               <p>
                 <input type="submit" name="submit" value="SUBMIT" />

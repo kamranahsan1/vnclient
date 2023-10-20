@@ -3,6 +3,10 @@ const {
   ALL_PACKAGE_SUCCESS,
   ALL_PACKAGE_FAIL,
 
+  ALL_PACKAGE_HOT_REQUEST,
+  ALL_PACKAGE_HOT_SUCCESS,
+  ALL_PACKAGE_HOT_FAIL,
+
   ALL_CATEGORY_REQUEST,
   ALL_CATEGORY_SUCCESS,
   ALL_CATEGORY_FAIL,
@@ -38,6 +42,36 @@ export const packageReducers = (state = { packages: [] }, action) => {
         resultPerPage: action.payload.resultPerPage,
       };
     case ALL_PACKAGE_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const packageHotReducers = (state = { packagesHot: [] }, action) => {
+  switch (action.type) {
+    case ALL_PACKAGE_HOT_REQUEST:
+      return {
+        loading: true,
+        packagesHot: [],
+        packagesHotCount: 0,
+      };
+    case ALL_PACKAGE_HOT_SUCCESS:
+      return {
+        loading: false,
+        packagesHot: action.payload.packages,
+        packagesHotCount: action.payload.packagesCount,
+        resultPerPage: action.payload.resultPerPage,
+      };
+    case ALL_PACKAGE_HOT_FAIL:
       return {
         loading: false,
         error: action.payload,

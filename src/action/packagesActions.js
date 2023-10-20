@@ -10,6 +10,9 @@ import {
   ALL_PACKAGE_REQUEST,
   ALL_PACKAGE_SUCCESS,
   ALL_PACKAGE_FAIL,
+  ALL_PACKAGE_HOT_REQUEST,
+  ALL_PACKAGE_HOT_SUCCESS,
+  ALL_PACKAGE_HOT_FAIL,
   ALL_CATEGORY_REQUEST,
   ALL_CATEGORY_SUCCESS,
   ALL_CATEGORY_FAIL,
@@ -41,7 +44,6 @@ export const getPackages =
         link += `&category=${params.category}`;
       }
 
-      console.log(link);
       const { data } = await axios.get(link);
 
       dispatch({
@@ -68,6 +70,23 @@ export const getFeaturePackages = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ALL_PACKAGE_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+export const getHotDeals = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_PACKAGE_HOT_REQUEST });
+    let link = `${API_LINK}/packages?featured=2&resultPerPage=3`;
+    const { data } = await axios.get(link);
+    dispatch({
+      type: ALL_PACKAGE_HOT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_PACKAGE_HOT_FAIL,
       payload: error.response.data.message,
     });
   }

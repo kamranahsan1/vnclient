@@ -26,7 +26,7 @@ const Packages = () => {
     categories.find((cat) => cat.slug.includes(params.category)) || false;
 
   if (!category) {
-    navigate(ERROR_404);
+    //navigate(ERROR_404);
   }
 
   const [showModal, setShowModal] = useState(false);

@@ -15,6 +15,8 @@ import {
   PICKUP_SERVICES_URL,
   CONTACT_URL,
   AI_TOURS_URL,
+  FB_LINK,
+  INSTA_LINK,
 } from "../../constants/commonConstants";
 
 const Header = () => {
@@ -214,13 +216,13 @@ const Header = () => {
               <div className="header-social social-icon">
                 <ul>
                   <li>
-                    <Link to="https://www.facebook.com/" target="_blank">
+                    <Link to={FB_LINK} target="_blank">
                       <i className="fab fa-facebook-f" aria-hidden="true"></i>
                     </Link>
                   </li>
                   <li>
-                    <Link to="https://www.youtube.com" target="_blank">
-                      <i className="fab fa-youtube" aria-hidden="true"></i>
+                    <Link to={INSTA_LINK} target="_blank">
+                      <i className="fab fa-instagram" aria-hidden="true"></i>
                     </Link>
                   </li>
                 </ul>
@@ -292,21 +294,29 @@ const Header = () => {
                       <Link>Visas</Link>
                       <ul>
                         {viewcategory &&
-                          viewcategory.map((category, index) => (
-                            <li
-                              key={index}
-                              onClick={() => {
-                                navigationActive(`/visa/${category.slug}`);
-                              }}
-                            >
-                              <Link
-                                to={`/visa/${category.slug}`}
-                                onClick={() => setShowPackagesSubMenu(false)}
-                              >
-                                {category.name}
-                              </Link>
-                            </li>
-                          ))}
+                          viewcategory.map((category, index) => {
+                            // Check if isNavigation is 1 for the category
+                            if (category.isNavigation === 1) {
+                              return (
+                                <li
+                                  key={index}
+                                  onClick={() => {
+                                    navigationActive(`/visa/${category.slug}`);
+                                  }}
+                                >
+                                  <Link
+                                    to={`/visa/${category.slug}`}
+                                    onClick={() =>
+                                      setShowPackagesSubMenu(false)
+                                    }
+                                  >
+                                    {category.name}
+                                  </Link>
+                                </li>
+                              );
+                            }
+                            return null;
+                          })}
                       </ul>
                     </li>
                     <li
@@ -333,6 +343,7 @@ const Header = () => {
                     >
                       <Link>Our Services</Link>
                       <ul>
+                        {/*
                         <li>
                           <Link
                             to={TRAVEL_INSURANCE_URL}
@@ -342,7 +353,7 @@ const Header = () => {
                           >
                             Travel Insurance
                           </Link>
-                        </li>
+                          </li>*/}
                         <li>
                           <Link
                             to={PICKUP_SERVICES_URL}
@@ -481,22 +492,28 @@ const Header = () => {
                     className={showVisasSubMenu ? "" : "slicknav_hidden"}
                     aria-hidden="true"
                   >
-                    <li>
-                      <Link
-                        to={UAE_VISA_URL}
-                        onClick={() => setMenuToggle(false)}
-                      >
-                        Uae Visa
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to={SCHENGEN_VISA_URL}
-                        onClick={() => setMenuToggle(false)}
-                      >
-                        Schengen Visa
-                      </Link>
-                    </li>
+                    {viewcategory &&
+                      viewcategory.map((category, index) => {
+                        // Check if isNavigation is 1 for the category
+                        if (category.isNavigation === 1) {
+                          return (
+                            <li
+                              key={index}
+                              onClick={() => {
+                                navigationActive(`/visa/${category.slug}`);
+                              }}
+                            >
+                              <Link
+                                to={`/visa/${category.slug}`}
+                                onClick={() => setMenuToggle(false)}
+                              >
+                                {category.name}
+                              </Link>
+                            </li>
+                          );
+                        }
+                        return null;
+                      })}
                   </ul>
                 </li>
                 <li>

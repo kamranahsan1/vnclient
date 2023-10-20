@@ -3,6 +3,8 @@ import Banner from "./layouts/Banner";
 import MetaData from "./layouts/MetaData";
 import { useDispatch } from "react-redux";
 import { saveContact } from "../action/packagesActions";
+import { Link } from "react-router-dom";
+import { FB_LINK, INSTA_LINK } from "../constants/commonConstants";
 
 function Contact() {
   const dispatch = useDispatch();
@@ -76,44 +78,20 @@ function Contact() {
                     <div className="social-icon">
                       <ul>
                         <li>
-                          <a href="https://www.facebook.com" target="_blank">
+                          <Link to={FB_LINK}>
                             <i
                               className="fab fa-facebook-f"
                               aria-hidden="true"
                             ></i>
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="https://www.twitter.com" target="_blank">
-                            <i
-                              className="fab fa-twitter"
-                              aria-hidden="true"
-                            ></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://www.youtube.com" target="_blank">
-                            <i
-                              className="fab fa-youtube"
-                              aria-hidden="true"
-                            ></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://www.instagram.com" target="_blank">
+                          <Link to={INSTA_LINK}>
                             <i
                               className="fab fa-instagram"
                               aria-hidden="true"
                             ></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://www.pinterest.com" target="_blank">
-                            <i
-                              className="fab fa-pinterest"
-                              aria-hidden="true"
-                            ></i>
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -121,7 +99,7 @@ function Contact() {
                   <div className="contact-map">
                     <iframe
                       title="google_map"
-                      src="https://www.google.com/maps/embed/v1/place?q=25.18907082791253,+55.26140949206774&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3599.9681193795756!2d55.2589016!3d25.1881109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6833aaaaaaab%3A0xcc775e8c16ceacc9!2sNew%20Vision%20Travel%20%26%20Tourism%20L.L.C!5e0!3m2!1sen!2s!4v1634657032580!5m2!1sen!2s"
                       width="600"
                       height="480"
                       style={{ border: "0" }}
@@ -277,9 +255,7 @@ function Contact() {
                     <div className="icon-box-content">
                       <h4>BRANCHES</h4>
                       <ul>
-                        <li>United Arab Emirates</li>
-                        <li>Saudi Arabia</li>
-                        <li>Turkey</li>
+                        <li>Dubai</li>
                       </ul>
                     </div>
                   </div>

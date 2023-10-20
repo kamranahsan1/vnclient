@@ -7,10 +7,12 @@ import {
   countriesReducers,
   viewcategoryReducers,
   generatedTourReducers,
+  packageHotReducers,
 } from "./reducers/packageReducer";
 
 const reducer = combineReducers({
   packages: packageReducers,
+  packagesHot: packageHotReducers,
   categories: categoriesReducers,
   countries: countriesReducers,
   viewcategory: viewcategoryReducers,

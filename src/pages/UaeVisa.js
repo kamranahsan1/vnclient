@@ -3,6 +3,7 @@ import Banner from "./layouts/Banner";
 import { Link } from "react-router-dom";
 import MetaData from "./layouts/MetaData";
 import ModalBooking from "../pages/layouts/ModalBooking";
+import { removePrefixFromURL } from "../constants/commonConstants";
 
 const UaeVisa = () => {
   const [showModal, setShowModal] = useState(false);

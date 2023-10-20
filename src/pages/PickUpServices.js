@@ -63,7 +63,7 @@ const PickUpServices = () => {
                 <div className="col-md-7">
                   <figure className="career-detail-image">
                     <img
-                      src="https://newvision.travel/wp-content/uploads/2023/04/why-booking-an-airport-transfer-is-an-awesome-idea-camelcompany-768x512.jpeg"
+                      src="/assets/images/why-booking-an-airport-transfer-is-an-awesome-idea.png"
                       alt=""
                     />
                   </figure>

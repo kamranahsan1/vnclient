@@ -4,7 +4,7 @@ import MetaData from "./layouts/MetaData";
 import {
   CONTACT_URL,
   SCHENGEN_VISA_URL,
-  TOURS_URL,
+  removePrefixFromURL,
 } from "../constants/commonConstants";
 import { Link } from "react-router-dom";
 import ModalBooking from "../pages/layouts/ModalBooking";
@@ -12,6 +12,7 @@ import {
   clearErrors,
   getFeaturePackages,
   getViewCategory,
+  getHotDeals,
 } from "../action/packagesActions";
 import TourGenerator from "../components/TourGenerator";
 
@@ -20,12 +21,14 @@ function Home() {
   const [showModal, setShowModal] = useState(false);
   const [ModalQuery, setModalQuery] = useState("");
   const { packages, error } = useSelector((state) => state.packages);
+  const { packagesHot } = useSelector((state) => state.packagesHot);
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
     dispatch(getFeaturePackages());
+    dispatch(getHotDeals());
   }, [dispatch, error]);
 
   const { viewcategory } = useSelector((state) => state.viewcategory);
@@ -80,6 +83,7 @@ function Home() {
                       </span>{" "}
                       Travel and Tourism
                     </p>
+                    {/** 
                     <div className="banner-btn">
                       <Link
                         to={CONTACT_URL}
@@ -88,6 +92,7 @@ function Home() {
                         BOOK NOW
                       </Link>
                     </div>
+                    */}
                   </div>
                 </div>
               </div>
@@ -95,6 +100,50 @@ function Home() {
           </div>
         </section>
         <TourGenerator />
+        <section className="home-destination pd-top">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8 offset-lg-2 text-sm-center">
+                <div className="section-heading">
+                  <h2 className="section-title">HOT DEALS</h2>
+                </div>
+              </div>
+            </div>
+            <div className="destination-section">
+              <div className="row">
+                {packagesHot &&
+                  packagesHot.map((tour, index) => (
+                    <div className="col-lg-4 col-md-6" key={index}>
+                      <Link to={`/tour/${tour.slug}`}>
+                        <article
+                          className="destination-item"
+                          style={{
+                            backgroundImage: `url(${removePrefixFromURL(
+                              tour.mainImage
+                            )})`,
+                          }}
+                        >
+                          <div className="destination-content">
+                            <div className="rating-start-wrap">
+                              <div className="rating-start">
+                                <span style={{ width: "100%" }}></span>
+                              </div>
+                            </div>
+                            <h3>{tour.name}</h3>
+                          </div>
+                        </article>
+                      </Link>
+                    </div>
+                  ))}
+              </div>
+              <div className="section-btn-wrap text-center">
+                <Link to={`package/hot-deals`} className="round-btn">
+                  More Deals
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
         <section className="home-destination pd-top">
           <div className="container">
             <div className="row">
@@ -114,7 +163,9 @@ function Home() {
                         <article
                           className="destination-item"
                           style={{
-                            backgroundImage: `url(${tour.mainImage})`,
+                            backgroundImage: `url(${removePrefixFromURL(
+                              tour.mainImage
+                            )})`,
                           }}
                         >
                           <div className="destination-content">
@@ -180,7 +231,9 @@ function Home() {
                       <article
                         className="offer-item"
                         style={{
-                          backgroundImage: `url(${vc.mainImage})`,
+                          backgroundImage: `url(${removePrefixFromURL(
+                            vc.mainImage
+                          )})`,
                         }}
                       >
                         <div className="offer-content">
@@ -196,11 +249,13 @@ function Home() {
                     </div>
                   ))}
                 </div>
+                {/*
                 <div className="section-btn-wrap text-center">
                   <Link className="round-btn" to={SCHENGEN_VISA_URL}>
                     View ALL
                   </Link>
                 </div>
+                */}
               </div>
             </div>
           </section>

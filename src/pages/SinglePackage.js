@@ -4,7 +4,7 @@ import Banner from "./layouts/Banner";
 import UaePackage from "../components/UaePackage";
 import ModalBooking from "./layouts/ModalBooking";
 import axios from "axios";
-import { API_LINK } from "../constants/commonConstants";
+import { API_LINK, removePrefixFromURL } from "../constants/commonConstants";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -52,7 +52,9 @@ const SinglePackage = () => {
       <main id="content" className="site-main">
         <section className="package-inner-page">
           <Banner
-            bg={tour.mainImage || "/assets/images/img7.jpg"}
+            bg={
+              removePrefixFromURL(tour.mainImage) || "/assets/images/img7.jpg"
+            }
             title={tour.name}
             desc=""
           />

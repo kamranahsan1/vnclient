@@ -1,14 +1,21 @@
-export const API_LINK = `https://vnbackend-b4d0409e1de8.herokuapp.com/api`;
-export const API_IMAGE = `https://vnbackend-b4d0409e1de8.herokuapp.com/uploads`;
+// export const API_LINK = `https://vnbackend-b4d0409e1de8.herokuapp.com/api`;
+//export const API_IMAGE = `https://vnbackend-b4d0409e1de8.herokuapp.com/uploads`;
 
 // export const API_LINK = `http://127.0.0.1:5000/api`;
 // export const API_IMAGE = `http://127.0.0.1:5000/uploads`;
+export const API_LINK = `https://server.newvision.travel:5000/api`;
+export const API_IMAGE = `https://server.newvision.travel:5000/uploads`;
+export const BASE_IMAGE_URL = `https://newvision.travel/server/backend`;
 
 export const APP_NAME = `NewVision Travel & Tours`;
 
 export const ALL_PACKAGE_REQUEST = "ALL_PACKAGE_REQUEST";
 export const ALL_PACKAGE_SUCCESS = "ALL_PACKAGE_SUCCESS";
 export const ALL_PACKAGE_FAIL = "ALL_PACKAGE_FAIL";
+
+export const ALL_PACKAGE_HOT_REQUEST = "ALL_PACKAGE_HOT_REQUEST";
+export const ALL_PACKAGE_HOT_SUCCESS = "ALL_PACKAGE_HOT_SUCCESS";
+export const ALL_PACKAGE_HOT_FAIL = "ALL_PACKAGE_HOT_FAIL";
 
 export const ALL_CATEGORY_REQUEST = "ALL_CATEGORY_REQUEST";
 export const ALL_CATEGORY_SUCCESS = "ALL_CATEGORY_SUCCESS";
@@ -55,3 +62,36 @@ export const TRAVEL_INSURANCE_URL = "/travel-insurance";
 export const PICKUP_SERVICES_URL = "/pickup-services";
 export const CONTACT_URL = "/contact";
 export const ERROR_404 = "/404_not_found";
+
+export const FB_LINK = "https://www.facebook.com/newvisiontravels/";
+export const INSTA_LINK = "https://www.instagram.com/newvision.travel/";
+
+export const removePrefixFromURL = (url) => {
+  if (url) {
+    if (url.includes("://")) {
+      return url;
+    }
+    const prefixes = [
+      "http://127.0.0.1:5000/uploads",
+      "https://127.0.0.1:5000/uploads",
+      "https://newvision.travel/wp-content/uploads",
+      "http://newvision.travel/wp-content/uploads",
+      "https://vnbackend-b4d0409e1de8.herokuapp.com/uploads",
+      "http://vnbackend-b4d0409e1de8.herokuapp.com/uploads",
+      "https://server.newvision.travel:5000/uploads",
+      "http://server.newvision.travel:5000/uploads",
+    ];
+
+    for (const prefix of prefixes) {
+      if (url.startsWith(prefix)) {
+        return BASE_IMAGE_URL + url.slice(prefix.length);
+      }
+    }
+
+    const modified = BASE_IMAGE_URL + url;
+    return modified;
+  } else {
+    console.error("URL is undefined or null.");
+    return null;
+  }
+};

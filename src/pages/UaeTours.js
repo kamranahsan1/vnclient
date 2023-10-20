@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUaePackages, clearErrors } from "../action/packagesActions";
 import ModalBooking from "../pages/layouts/ModalBooking";
-
+import { removePrefixFromURL } from "../constants/commonConstants";
 function UaeTours() {
   const params = useParams();
   const dispatch = useDispatch();
@@ -66,7 +66,7 @@ function UaeTours() {
                       <div className="package-meta"></div>
                       <figure className="single-package-image">
                         <img
-                          src={tour.mainImage}
+                          src={removePrefixFromURL(tour.mainImage)}
                           alt=""
                           className="full-width"
                         />
